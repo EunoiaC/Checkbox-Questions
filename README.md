@@ -3,7 +3,7 @@ CheckboxQuestions is a library that provides with different forms of asking ques
 
 # QuestionsList
 This is the easiest way to add questions. This works by adding questions to a layout defined in your layout xml file.
-Here is an example layout file
+Here is an example layout file:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -43,6 +43,7 @@ Here is an example layout file
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 (The button is to get answers, the scrollview is in case there are too many questions and they go offscreen)
+
 We mainly only care about the linear layout in the scrollview.
 
 ```java
