@@ -48,8 +48,29 @@ We mainly only care about the linear layout in the scrollview.
 ```java
 LinearLayout linearLayout = findViewById(R.id.questionLayout);
 ```
+Now we want to create our QuestionList, but first you have to give it some settings so the view is displayed to your likings.
 
+```java
+QuestionListSettings questionListSettings = new QuestionListSettings.SettingsBuilder()
+                                .setCheckboxLocation(Question.LEFT)
+                                .setCheckBoxOrientation(Question.SPLIT_VERTICAL)
+                                .setNumberEnabled(false)
+                                .setOptionTextSize(20)
+                                .setQuestionTextSize(24)
+                                .setSpacing(15)
+                                .create();
+```
+The `setCheckboxLocation()` allows you to choose whether the options for the question are to the left, center, or right of the screen.
+The `setCheckBoxOrientation()` allows you to choose whether the options for the question are stacked or sideways to eachother.
+The `setNumberEnabled()` allows you to choose whether the questions have a visible number.
+The `setSpacing()` allows you to choose how far apart the options are from eachother.
+The `setQuestionTextSize()` and `setOptionTextSize()` allows you to choose the text size for the question and th options respectively.
 
+Now we want to create our list of questions. There are 2 ways to do this. If you want simple yes or no questions, just create a String array full of questions.
+
+```java
+String[] string = new String[]{"Is 9+2 = 11?", "Are you happy?", "Did you eat breakfast?"};
+```
 
 # YesOrNoQuestions
 YesOrNoQuestions are a simple form of question which show a question with a number, and only allow a yes or no as an answer, while MultipleChoiceQuestions allow [anything](##Options) as a option. To use it in an XML layout just use the following code:
