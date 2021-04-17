@@ -73,6 +73,14 @@ Now we want to create our list of questions. There are 2 ways to do this. If you
 String[] string = new String[]{"Is 9+2 = 11?", "Are you happy?", "Did you eat breakfast?"};
 ```
 
+If you want to use multiple choice questions, create an ArrayList of [questions](#question)].
+
+```java
+ArrayList<Question> list = new ArrayList<>();
+
+list.add(new Question("How are you?", 0, "Good", "Bad"));
+```
+
 # YesOrNoQuestions
 YesOrNoQuestions are a simple form of question which show a question with a number, and only allow a yes or no as an answer, while MultipleChoiceQuestions allow [anything](##Options) as a option. To use it in an XML layout just use the following code:
 ```xml
