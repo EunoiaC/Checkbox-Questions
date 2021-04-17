@@ -73,7 +73,7 @@ Now we want to create our list of questions. There are 2 ways to do this. If you
 String[] string = new String[]{"Is 9+2 = 11?", "Are you happy?", "Did you eat breakfast?"};
 ```
 
-If you want to use multiple choice questions, create an ArrayList of [questions](#question).
+If you want to use multiple choice questions, create an ArrayList of [Questions](#question).
 
 ```java
 ArrayList<Question> list = new ArrayList<>();
