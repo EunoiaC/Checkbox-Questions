@@ -42,14 +42,14 @@ public class QuestionList {
                 Log.d("TAG", "createQuestionViews: " + Arrays.toString(q.options));
                 i++;
                 MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(context);
-                multipleChoiceQuestion.init(q.question, String.valueOf(i), settings.isNumEnabled(), settings.getSpacing(), settings.getCheckBoxOrientation(), settings.getCheckBoxLocation(), settings.getQuestionTextSize(), settings.getCheckBoxTextSize(), settings.getTextHeight(), q.options);
+                multipleChoiceQuestion.init(q.question, String.valueOf(i), settings.isNumEnabled(), settings.getSpacing(), settings.getCheckBoxOrientation(), settings.getCheckBoxLocation(), settings.getQuestionTextSize(), settings.getCheckBoxTextSize(), settings.getQuestionLayoutHeight(), settings.getOptionLayoutHeight(), q.options);
                 linearLayout.addView(multipleChoiceQuestion);
             }
         } else {
             for (String q : questions) {
                 i++;
                 YesOrNoQuestion yesOrNoQuestion = new YesOrNoQuestion(context);
-                yesOrNoQuestion.init(q, String.valueOf(i), settings.isNumEnabled(), settings.getSpacing(), settings.getCheckBoxOrientation(), settings.getCheckBoxLocation(), settings.getQuestionTextSize(), settings.getCheckBoxTextSize(), settings.getTextHeight());
+                yesOrNoQuestion.init(q, String.valueOf(i), settings.isNumEnabled(), settings.getSpacing(), settings.getCheckBoxOrientation(), settings.getCheckBoxLocation(), settings.getQuestionTextSize(), settings.getCheckBoxTextSize(), settings.getQuestionLayoutHeight(), settings.getOptionLayoutHeight());
                 linearLayout.addView(yesOrNoQuestion);
             }
         }

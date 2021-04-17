@@ -41,13 +41,14 @@ public class MultipleChoiceQuestion extends LinearLayout {
         String a3;
         String a4;
         int spacing;
-        float questionTextSize,  optionTextSize, questionLayoutHeight;
+        float questionTextSize, optionTextSize, questionLayoutHeight, optionLayoutHeight;
         int boxLocation;
         int orientation;
         boolean numberEnabled;
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.MultipleChoiceQuestion, 0, 0);
 
         try {
+            optionLayoutHeight = a.getFloat(R.styleable.MultipleChoiceQuestion_option_layout_height, QuestionListSettings.TEXT_SIZE_DEFAULT);
             questionTextSize = a.getFloat(R.styleable.MultipleChoiceQuestion_question_text_size, QuestionListSettings.TEXT_SIZE_DEFAULT);
             optionTextSize = a.getFloat(R.styleable.MultipleChoiceQuestion_option_text_size, QuestionListSettings.TEXT_SIZE_DEFAULT);
             questionLayoutHeight = a.getFloat(R.styleable.MultipleChoiceQuestion_question_layout_height, QuestionListSettings.TEXT_SIZE_DEFAULT);
@@ -65,17 +66,24 @@ public class MultipleChoiceQuestion extends LinearLayout {
             a.recycle();
         }
 
-        init(title, number, numberEnabled, spacing, orientation, boxLocation, questionTextSize, optionTextSize, questionLayoutHeight, a1, a2, a3, a4);
+        init(title, number, numberEnabled, spacing, orientation, boxLocation, questionTextSize, optionTextSize, questionLayoutHeight, optionLayoutHeight, a1, a2, a3, a4);
     }
 
     // Setup views
-    public void init(String title, String number, boolean numEnabled, int spacing, int orientation, int boxLocation, float questionTextSize, float optionTextSize, float height, String... options) {
+    public void init(String title, String number, boolean numEnabled, int spacing, int orientation, int boxLocation, float questionTextSize, float optionTextSize, float questionLayoutHeight, float optionLayoutHeight, String... options) {
         TextView questionTitle = (TextView) findViewById(R.id.question_title);
         TextView questionNumber = (TextView) findViewById(R.id.question_number);
         final CheckBox option1 = (CheckBox) findViewById(R.id.answer1);
         final CheckBox option2 = (CheckBox) findViewById(R.id.answer2);
         final CheckBox option3 = (CheckBox) findViewById(R.id.answer3);
         final CheckBox option4 = (CheckBox) findViewById(R.id.answer4);
+
+        if (!(questionLayoutHeight == QuestionListSettings.TEXT_SIZE_DEFAULT)){
+            //Todo: Set height
+        }
+        if (!(optionLayoutHeight == QuestionListSettings.TEXT_SIZE_DEFAULT)){
+            //Todo: Set height
+        }
 
         if (questionTextSize == QuestionListSettings.TEXT_SIZE_AUTO){
             //Todo: add code to auto adjust size using height

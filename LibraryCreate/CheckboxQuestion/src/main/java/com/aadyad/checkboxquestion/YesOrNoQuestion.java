@@ -39,10 +39,12 @@ public class YesOrNoQuestion extends LinearLayout {
         float questionTextSize;
         float checkBozTextSize;
         float questionLayoutHeight;
+        float optionLayoutHeight;
         boolean numberEnabled;
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.YesOrNoQuestion, 0, 0);
 
         try {
+            optionLayoutHeight = a.getFloat(R.styleable.YesOrNoQuestion_option_layout_height, QuestionListSettings.TEXT_SIZE_DEFAULT);
             questionTextSize = a.getFloat(R.styleable.YesOrNoQuestion_question_text_size, QuestionListSettings.TEXT_SIZE_DEFAULT);
             checkBozTextSize = a.getFloat(R.styleable.YesOrNoQuestion_option_text_size, QuestionListSettings.TEXT_SIZE_DEFAULT);
             questionLayoutHeight = a.getFloat(R.styleable.YesOrNoQuestion_question_layout_height, QuestionListSettings.TEXT_SIZE_DEFAULT);
@@ -56,11 +58,11 @@ public class YesOrNoQuestion extends LinearLayout {
             a.recycle();
         }
 
-        init(title, number, numberEnabled, spacing, orientation, boxLocation, questionTextSize, checkBozTextSize, questionLayoutHeight);
+        init(title, number, numberEnabled, spacing, orientation, boxLocation, questionTextSize, checkBozTextSize, questionLayoutHeight, optionLayoutHeight);
     }
 
     // Setup views
-    public void init(String title, String number, boolean numEnabled, int spacing, int orientation, int boxLocation, float questionSize, float checkBoxSize, float height) {
+    public void init(String title, String number, boolean numEnabled, int spacing, int orientation, int boxLocation, float questionSize, float checkBoxSize, float questionLayoutHeight, float optionLayoutHeight) {
         TextView questionTitle = (TextView) findViewById(R.id.question_title);
         TextView questionNumber = (TextView) findViewById(R.id.question_number);
         View space = findViewById(R.id.spacing);

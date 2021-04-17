@@ -9,11 +9,12 @@ public class QuestionListSettings {
     public static final int TEXT_SIZE_AUTO = -2;
 
     private int checkBoxLocation;
+    private float optionLayoutHeight;
     private int checkBoxOrientation;
     private int spacing;
     private float questionTextSize;
     private float checkBoxTextSize;
-    private float textHeight;
+    private float questionLayoutHeight;
 
     public float getQuestionTextSize() {
         return questionTextSize;
@@ -31,9 +32,7 @@ public class QuestionListSettings {
         this.checkBoxTextSize = checkBoxTextSize;
     }
 
-    public void setTextHeight(float textHeight) {
-        this.textHeight = textHeight;
-    }
+
 
     public float getTextSize() {
         return questionTextSize;
@@ -43,21 +42,26 @@ public class QuestionListSettings {
         this.questionTextSize = textSize;
     }
 
-    public float getTextHeight() {
-        return textHeight;
+    public float getOptionLayoutHeight() {
+        return optionLayoutHeight;
+    }
+
+    public float getQuestionLayoutHeight() {
+        return questionLayoutHeight;
     }
 
     public void setTextHeight(int textHeight) {
-        this.textHeight = textHeight;
+        this.questionLayoutHeight = textHeight;
     }
 
     private boolean numEnabled;
 
     public QuestionListSettings(SettingsBuilder builder){
         checkBoxLocation = builder.checkBoxLocation;
+        optionLayoutHeight = builder.optionLayoutHeight;
         checkBoxOrientation = builder.checkBoxOrientation;
         questionTextSize = builder.questionTextSize;
-        textHeight = builder.height;
+        questionLayoutHeight = builder.questionLayoutHeight;
         spacing = builder.spacing;
         numEnabled = builder.numEnabled;
         checkBoxTextSize = builder.optionBoxTextSize;
@@ -102,21 +106,27 @@ public class QuestionListSettings {
         private boolean numEnabled = true;
         private float questionTextSize = QuestionListSettings.TEXT_SIZE_DEFAULT;
         private float optionBoxTextSize = QuestionListSettings.TEXT_SIZE_DEFAULT;
-        private int height = -1;
+        private float questionLayoutHeight = QuestionListSettings.TEXT_SIZE_DEFAULT;
+        private float optionLayoutHeight = QuestionListSettings.TEXT_SIZE_DEFAULT;
+
 
         public SettingsBuilder setCheckboxLocation(final int checkBoxLocation) {
             this.checkBoxLocation = checkBoxLocation;
             return this;
         }
 
-        public SettingsBuilder useAutoTextSize(final int height) {
-            this.questionTextSize = QuestionListSettings.TEXT_SIZE_AUTO;
-            this.height = height;
+        public SettingsBuilder setQuestionTextSize(final float textSize) {
+            this.questionTextSize = textSize;
             return this;
         }
 
-        public SettingsBuilder setQuestionTextSize(final float textSize) {
-            this.questionTextSize = textSize;
+        public SettingsBuilder setOptionLayoutHeight(final float optionHeight) {
+            this.optionLayoutHeight = optionHeight;
+            return this;
+        }
+
+        public SettingsBuilder setQuestionLayoutHeight(final float questionHeight) {
+            this.questionLayoutHeight = questionHeight;
             return this;
         }
 
