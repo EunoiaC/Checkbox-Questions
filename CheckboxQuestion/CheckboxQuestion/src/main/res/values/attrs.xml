@@ -9,6 +9,7 @@
             <enum name="horizontal" value="0"/>
             <enum name="split_vertical" value="1"/>
             <enum name="auto" value="2"/>
+            <enum name="full_vertical" value="3"/>
         </attr>
         <attr name="question_title" format="string" />
         <attr name="checkbox_location" format="integer">
