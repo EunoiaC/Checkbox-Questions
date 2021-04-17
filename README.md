@@ -5,6 +5,7 @@ CheckboxQuestions is a library that provides with different forms of asking ques
 YesOrNoQuestions are a simple form of question which show a question with a number, and only allow a yes or no. To use it in an XML layout just use the following code:
 ```xml
 <com.aadyad.checkboxquestion.YesOrNoQuestion
+        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         app:number_enabled="true"
         app:spacing_between_boxes="35"
@@ -12,7 +13,8 @@ YesOrNoQuestions are a simple form of question which show a question with a numb
         app:checkbox_orientation="horizontal"
         app:question_number="1"
         app:question_title="Do you have a cold?"
-        android:layout_height="wrap_content"/>
+        app:question_text_size="20"
+        app:option_text_size="18" />
 ```
 
 ## Number Enabled
@@ -33,5 +35,11 @@ The `question_number` attribute allows you to set the number of the question.
 
 ## Question Title
 The `question_title` attribute allows you to set the question text.
+
+## Question Text Size
+The `question_text_size` attribute allows you to set the question text size.
+
+## Option Text Size
+The `option_text_size` attribute allows you to set the option text size.
 
 # MultipleChoiceQuestions
