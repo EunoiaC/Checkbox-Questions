@@ -1,6 +1,56 @@
 # CheckboxQuestions
 CheckboxQuestions is a library that provides with different forms of asking questions. So far there are [YesOrNoQuestions](#YesOrNoQuestions) and [MultipleChoiceQuestions](#MultipleChoiceQuestions) and 
 
+# QuestionsList
+This is the easiest way to add questions. This works by adding questions to a layout defined in your layout xml file.
+Here is an example layout file
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/questionLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/getAnswers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="logAnswers"
+                android:text="Press me!" />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+(The button is to get answers, the scrollview is in case there are too many questions and they go offscreen)
+We mainly only care about the linear layout in the scrollview.
+
+```java
+LinearLayout linearLayout = findViewById(R.id.questionLayout);
+```
+
+
+
 # YesOrNoQuestions
 YesOrNoQuestions are a simple form of question which show a question with a number, and only allow a yes or no as an answer, while MultipleChoiceQuestions allow [anything](##Options) as a option. To use it in an XML layout just use the following code:
 ```xml
