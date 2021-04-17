@@ -3,6 +3,7 @@ package com.aadyad.checkboxquestions_library;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final ScrollView scrollView = findViewById(R.id.questionLayout);
+        final LinearLayout linearLayout = findViewById(R.id.questionLayout);
 
         client = new OkHttpClient();
 
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                         questionList = new QuestionList(list, questionListSettings, getApplicationContext());
                         questionList.createQuestionViews();
 
-                        scrollView.addView(questionList.getQuestionViews());
+                        linearLayout.addView(questionList.getQuestionViews());
                     }
                 });
 
