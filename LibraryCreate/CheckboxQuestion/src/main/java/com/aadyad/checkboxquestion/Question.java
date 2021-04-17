@@ -4,6 +4,8 @@ import android.util.Log;
 
 public class Question {
 
+    //TODO: Add type to question and create a customview which allows input instead of checkboxes.
+
     public static final int LEFT = 0;
     public static final int HORIZONTAL = 0;
     public static final int SPLIT_VERTICAL = 1;
