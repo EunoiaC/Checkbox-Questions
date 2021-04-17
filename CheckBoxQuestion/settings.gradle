@@ -1,3 +1,0 @@
-include ':CheckboxQuestion'
-include ':app'
-rootProject.name = "CheckBoxQuestion"

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="YesOrNoQuestion">
+        <attr name="option_text_size" format="float"/>
+        <attr name="question_text_size" format="float"/>
+        <attr name="question_layout_height" format="float"/>
+        <attr name="option_layout_height" format="float"/>
+        <attr name="checkbox_orientation" format="integer">
+            <enum name="horizontal" value="0"/>
+            <enum name="split_vertical" value="1"/>
+            <enum name="auto" value="2"/>
+        </attr>
+        <attr name="question_title" format="string" />
+        <attr name="checkbox_location" format="integer">
+            <enum name="left" value="0"/>
+            <enum name="center" value="1"/>
+            <enum name="right" value="2"/>
+        </attr>
+        <attr name="question_number" format="string" />
+        <attr name="number_enabled" format="boolean"/>
+        <attr name="spacing_between_boxes" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="MultipleChoiceQuestion">
+        <attr name="option_text_size"/>
+        <attr name="question_text_size"/>
+        <attr name="question_layout_height"/>
+        <attr name="option_layout_height"/>
+        <attr name="checkbox_orientation"/>
+        <attr name="question_title"/>
+        <attr name="checkbox_location"/>
+        <attr name="question_number"/>
+        <attr name="number_enabled"/>
+        <attr name="spacing_between_boxes"/>
+        <attr name="option_1" format="string"/>
+        <attr name="option_2" format="string"/>
+        <attr name="option_3" format="string"/>
+        <attr name="option_4" format="string"/>
+    </declare-styleable>
+</resources>
