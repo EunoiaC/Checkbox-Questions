@@ -3,9 +3,13 @@ CheckboxQuestions is a library that provides with different forms of asking ques
 
 #### Table of Contents  
 <ul>
-    <li><a href="#QuestionsList">QuestionsList</a></li>
-    <li><a href="#YesOrNoQuestions">YesOrNoQuestions</a></li>
-    <li><a href="#MultipleChoiceQuestions">MultipleChoiceQuestions</a></li>
+    <li>Usage</li>
+    <ul>
+        <li><a href="#QuestionsList">QuestionsList</a></li>
+        <li><a href="#YesOrNoQuestions">YesOrNoQuestions</a></li>
+        <li><a href="#MultipleChoiceQuestions">MultipleChoiceQuestions</a></li>
+    </ul>
+    
 </ul>
 
 # QuestionsList
