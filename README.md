@@ -1,5 +1,11 @@
 # CheckboxQuestions
-CheckboxQuestions is a library that provides with different forms of asking questions. So far there are [YesOrNoQuestions](#YesOrNoQuestions) and [MultipleChoiceQuestions](#MultipleChoiceQuestions) and 
+CheckboxQuestions is a library that provides with different forms of asking questions. So far there are [YesOrNoQuestions](#YesOrNoQuestions) and [MultipleChoiceQuestions](#MultipleChoiceQuestions).
+
+##### Table of Contents  
+Usage
+> [QuestionsList](#QuestionsList)
+> [MultipleChoiceQuestions](#MultipleChoiceQuestions)
+> [YesOrNoQuestions](#YesOrNoQuestions)
 
 # QuestionsList
 This is the easiest way to add questions. This works by adding questions to a layout defined in your layout xml file.
@@ -80,6 +86,24 @@ ArrayList<Question> list = new ArrayList<>();
 
 list.add(new Question("How are you?", 0, "Good", "Bad"));
 ```
+(You can add as many questions as you like)
+
+Next we want to create our Question List using the settings you created and the list/array you created.
+
+```java
+questionList = new QuestionList(list, questionListSettings, context);
+```
+
+Now if you want to create the views, just call `createQuestionViews()`.
+
+```java
+questionList.createQuestionViews();
+```
+
+To add the views to your layout, you can use:
+```java
+linearLayout.addView(questionList.getQuestionViews());
+``` 
 
 # YesOrNoQuestions
 YesOrNoQuestions are a simple form of question which show a question with a number, and only allow a yes or no as an answer, while MultipleChoiceQuestions allow [anything](##Options) as a option. To use it in an XML layout just use the following code:
