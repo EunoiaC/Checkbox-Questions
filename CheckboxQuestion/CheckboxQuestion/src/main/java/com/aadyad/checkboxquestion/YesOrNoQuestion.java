@@ -97,7 +97,7 @@ public class YesOrNoQuestion extends LinearLayout {
             layoutParams.height = 0;
             space.setLayoutParams(layoutParams);
             layout.setOrientation(HORIZONTAL);
-        } else if (orientation == 1){
+        } else if (orientation == 1 || orientation == 3){
             layout.setOrientation(VERTICAL);
             layoutParams.height = spacing;
             layoutParams.width = 0;
