@@ -1,11 +1,12 @@
 # CheckboxQuestions
 CheckboxQuestions is a library that provides with different forms of asking questions. So far there are [YesOrNoQuestions](#YesOrNoQuestions) and [MultipleChoiceQuestions](#MultipleChoiceQuestions).
 
-##### Table of Contents  
-Usage
-> [QuestionsList](#QuestionsList)
-> [MultipleChoiceQuestions](#MultipleChoiceQuestions)
-> [YesOrNoQuestions](#YesOrNoQuestions)
+#### Table of Contents  
+<ul>
+    <li><a href="#QuestionsList">QuestionsList</a></li>
+    <li><a href="#YesOrNoQuestions">YesOrNoQuestions</a></li>
+    <li><a href="#MultipleChoiceQuestions">MultipleChoiceQuestions</a></li>
+</ul>
 
 # QuestionsList
 This is the easiest way to add questions. This works by adding questions to a layout defined in your layout xml file.
