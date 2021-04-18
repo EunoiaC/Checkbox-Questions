@@ -3,12 +3,10 @@ CheckboxQuestions is a library that provides with different forms of asking ques
 
 #### Table of Contents  
 <ul>
-    <li>Usage</li>
-    <ul>
-        <li><a href="#QuestionsList">QuestionsList</a></li>
-        <li><a href="#YesOrNoQuestions">YesOrNoQuestions</a></li>
-        <li><a href="#MultipleChoiceQuestions">MultipleChoiceQuestions</a></li>
-    </ul>
+    <li><a href="#QuestionsList">QuestionsList</a></li>
+    <li><a href="#YesOrNoQuestions">YesOrNoQuestions</a></li>
+    <li><a href="#MultipleChoiceQuestions">MultipleChoiceQuestions</a></li>
+    <li><a href="#Questions">Questions</a></li>
     
 </ul>
 
@@ -150,5 +148,23 @@ The `question_text_size` attribute allows you to set the question text size.
 
 ## Option Text Size
 The `option_text_size` attribute allows you to set the option text size.
+
+# Questions
+Questions are an object that allow you to make a QuestionList full of Multiple Choice Questions.
+There are 2 constructors for the Question object, which means there are 2 ways to define your Question object
+
+One way:
+```java
+Question q = new Question("What is the slope intercept equation of a line?", 2, "x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y");
+```
+The first argument that was passed is the question, the third arg is an array full of possible answers, and the second arg is the index (this index STARTS at 1, NOT 0) of the correct answer in the array.
+
+Another way:
+```java
+Question q = new Question("What is the slope intercept equation of a line?", "y = mx + b", "x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y");
+```
+In this example, the second arg is a string of the correct answer. Everything else stays the same.
+
+If there is no answer, the second arg can be set to Question.NO_ANSWER (or 0).
 
 # MultipleChoiceQuestions
