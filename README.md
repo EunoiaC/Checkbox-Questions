@@ -157,9 +157,14 @@ One way:
 ```java
 Question q = new Question("What is the slope intercept equation of a line?", 2, "x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y");
 ```
-The first argument that was passed is the question, the third arg is an array full of possible answers, and the second arg is the index (this index STARTS at 1, NOT 0) of the correct answer in the array.
+The first argument that was passed is the question, the third arg is a String array full of possible answers, and the second arg is the index (this index STARTS at 1, NOT 0) of the correct answer in the array.
 
-Another way:
+The third arg can also be written as:
+```java
+new String[]{"x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y"}
+```
+
+Another way to create a Question is:
 ```java
 Question q = new Question("What is the slope intercept equation of a line?", "y = mx + b", "x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y");
 ```
