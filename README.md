@@ -18,6 +18,45 @@ CheckboxQuestions is a library that provides with different forms of asking ques
     <li><a href="#Questions">Questions</a></li>
 </ul>
 
+# Implementation
+
+## For Gradle
+In your project level build.gradle first add JitPack:
+```gradle
+allprojects {
+    repositories {
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+In your app level build.gradle add:
+```gradle
+dependencies {
+    implementation 'com.github.Cyber-cp:CheckboxQuestions:v1.0.0'
+}
+```
+
+## For maven
+First add JitPack to your build file:
+```xml
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+```
+Then add the dependancy:
+```xml
+	<dependency>
+	    <groupId>com.github.Cyber-cp</groupId>
+	    <artifactId>CheckboxQuestions</artifactId>
+	    <version>v1.0.0</version>
+	</dependency>
+```
+
+
+
 # QuestionsList
 This is the easiest way to add questions. This works by adding questions to a layout defined in your layout xml file.
 Here is an example layout file:
