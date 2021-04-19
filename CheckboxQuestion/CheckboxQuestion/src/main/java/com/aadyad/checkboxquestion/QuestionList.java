@@ -108,7 +108,7 @@ public class QuestionList {
         return answers;
     }
 
-    public boolean allQuestionsAnswered(){
+    public boolean areAllQuestionsAnswered(){
         ArrayList<Integer> answers = new ArrayList<>();
         Log.d("answers", "list size: " + linearLayout.getChildCount());
         for (int i = 0; i < linearLayout.getChildCount(); i++) {

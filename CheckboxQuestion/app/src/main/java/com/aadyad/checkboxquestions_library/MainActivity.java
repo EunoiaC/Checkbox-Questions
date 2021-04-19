@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -116,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logAnswers(View v) {
-        Log.d("Questions answered", "logAnswers: " + questionList.allQuestionsAnswered());
+        Log.d("Questions answered", "logAnswers: " + questionList.areAllQuestionsAnswered());
         Log.d("Questions answered", "percentage: " + questionList.getPercentageOfCorrectAnswers());
         String s = "";
         for (int i : questionList.getAnswers()) {
