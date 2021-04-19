@@ -1,9 +1,7 @@
 # CheckboxQuestions
 CheckboxQuestions is a library that provides with different forms of asking questions. So far there are [YesOrNoQuestions](#YesOrNoQuestions) and [MultipleChoiceQuestions](#MultipleChoiceQuestions).
 
-#### Table of Contents 
-
-[YEET](##Settings%20Builder)
+#### Table of Contents
 
 <ul>
     <li><a href="#QuestionsList">QuestionsList</a>
