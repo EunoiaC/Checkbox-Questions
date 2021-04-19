@@ -6,7 +6,7 @@ CheckboxQuestions is a library that provides with different forms of asking ques
 <ul>
     <li><a href="#QuestionsList">QuestionsList</a>
         <ul>
-            <li><a href="##Settings&nbsp;Builder">Settings Builder</li>
+            <li><a href="#settingsbuilder">Settings Builder</li>
             <li><a href="##List of questions">List of questions</li>
             <li><a href="##Creating the QuestionList">Initialization</li>
             <li><a href="##Getting the questions and diplaying them">Displaying views</li>
@@ -67,7 +67,7 @@ We mainly only care about the linear layout in the scrollview.
 LinearLayout linearLayout = findViewById(R.id.questionLayout);
 ```
 
-## Settings&nbsp;Builder
+## Settings Builder
 
 Now we want to create our QuestionList, but first you have to give it some settings so the view is displayed to your likings.
 
