@@ -5,11 +5,11 @@ CheckboxQuestions is a library that provides with different forms of asking ques
 <ul>
     <li><a href="#QuestionsList">QuestionsList</a>
         <ul>
-            <li><a href="#Settings Builder">Settings Builder</li>
-            <li><a href="#List of questions">List of questions</li>
-            <li><a href="#Creating the QuestionList">Initialization</li>
-            <li><a href="#Getting the questions and diplaying them">Displaying views</li>
-            <li><a href="#All methods">Methods</li>
+            <li><a href="##Settings Builder">Settings Builder</li>
+            <li><a href="##List of questions">List of questions</li>
+            <li><a href="##Creating the QuestionList">Initialization</li>
+            <li><a href="##Getting the questions and diplaying them">Displaying views</li>
+            <li><a href="##All methods">Methods</li>
         </ul>
     </li>
     <li><a href="#YesOrNoQuestions">YesOrNoQuestions</a></li>
