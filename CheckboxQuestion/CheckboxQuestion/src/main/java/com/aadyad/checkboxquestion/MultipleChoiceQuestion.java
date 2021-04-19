@@ -153,16 +153,15 @@ public class MultipleChoiceQuestion extends LinearLayout {
         ViewGroup.LayoutParams layoutParams3 = layoutSpacing.getLayoutParams();
 
         //Todo: add option to choose location of question text
-//
-//        if (boxLocation == LEFT){
-//            layout.setGravity(Gravity.LEFT);
-//        } else if (boxLocation == CENTER){
-//            layout.setGravity(Gravity.CENTER);
-//        } else if (boxLocation == RIGHT){
-//            layout.setGravity(Gravity.RIGHT);
-//        }
-//
-        //Todo: Add more orientation options that allow for one option per line
+
+        if (boxLocation == LEFT){
+            layout.setGravity(Gravity.LEFT);
+        } else if (boxLocation == CENTER){
+            layout.setGravity(Gravity.CENTER);
+        } else if (boxLocation == RIGHT){
+            layout.setGravity(Gravity.RIGHT);
+        }
+
         if (orientation == Question.HORIZONTAL){
             layoutParams1.width = spacing;
             layoutParams2.width = spacing;
@@ -185,8 +184,23 @@ public class MultipleChoiceQuestion extends LinearLayout {
             layoutSpacing.setLayoutParams(layoutParams3);
             spacing1.setLayoutParams(layoutParams1);
             spacing2.setLayoutParams(layoutParams2);
-        } else if (orientation == 2){
+        } else if (orientation == Question.AUTO){
             //Todo: code auto orientation if a question goes out of view
+        } else if (orientation == Question.FULL_VERTICAL){
+            LinearLayout layout1 = findViewById(R.id.checkBoxHolder1);
+            LinearLayout layout2 = findViewById(R.id.checkBoxHolder2);
+            layout1.setOrientation(VERTICAL);
+            layout2.setOrientation(VERTICAL);
+            layout.setOrientation(VERTICAL);
+            layoutParams3.width = 0;
+            layoutParams1.width = 0;
+            layoutParams2.width = 0;
+            layoutParams3.height = spacing;
+            layoutParams1.height = spacing;
+            layoutParams2.height = spacing;
+            layoutSpacing.setLayoutParams(layoutParams3);
+            spacing1.setLayoutParams(layoutParams1);
+            spacing2.setLayoutParams(layoutParams2);
         }
 
         questionTitle.setText(title);

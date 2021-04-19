@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         QuestionListSettings questionListSettings = new QuestionListSettings.SettingsBuilder()
                                 .setCheckboxLocation(Question.LEFT)
-                                .setCheckBoxOrientation(Question.SPLIT_VERTICAL)
+                                .setCheckBoxOrientation(Question.FULL_VERTICAL)
                                 .setNumberEnabled(false)
                                 .setOptionTextSize(20)
                                 .setQuestionTextSize(24)
