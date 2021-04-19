@@ -4,6 +4,12 @@ CheckboxQuestions is a library that provides with different forms of asking ques
 #### Table of Contents
 
 <ul>
+	<li><a href="#Implementation">Implementation</a>
+        <ul>
+            <li><a href="#For-Gradle">Gradle</li>
+            <li><a href="#For-Maven">Maven</li>
+        </ul>
+    	</li>
     <li><a href="#QuestionsList">QuestionsList</a>
         <ul>
             <li><a href="#Settings-Builder">Settings Builder</li>
@@ -23,11 +29,12 @@ CheckboxQuestions is a library that provides with different forms of asking ques
 ## For Gradle
 In your project level build.gradle first add JitPack:
 ```gradle
-allprojects {
-    repositories {
-		maven { url 'https://jitpack.io' }
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
 	}
-}
 ```
 In your app level build.gradle add:
 ```gradle
@@ -36,7 +43,7 @@ dependencies {
 }
 ```
 
-## For maven
+## For Maven
 First add JitPack to your build file:
 ```xml
 	<repositories>
