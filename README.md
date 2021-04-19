@@ -109,7 +109,7 @@ linearLayout.addView(questionList.getQuestionViews());
 ``` 
 
 # YesOrNoQuestions
-YesOrNoQuestions are a simple form of question which show a question with a number, and only allow a yes or no as an answer, while MultipleChoiceQuestions allow [anything](##Options) as a option. To use it in an XML layout just use the following code:
+YesOrNoQuestions are a simple form of question which show a question with a number, and only allow a yes or no as an answer, while MultipleChoiceQuestions allow [anything](##Options) as an option. To use it in an XML layout just use the following code:
 ```xml
 <com.aadyad.checkboxquestion.YesOrNoQuestion
         android:layout_height="wrap_content"
