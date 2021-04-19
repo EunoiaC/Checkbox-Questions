@@ -127,6 +127,20 @@ linearLayout.addView(questionList.getQuestionViews());
 
 ## All methods
 
+### `createQuestionViews()`
+Generates all the question views. They are stored in a LinearLayout.
+
+### `getQuestionViews()`
+Returns a LinearLayout full of question views. 
+
+### `areAllQuestionsAnswered()`
+Returns a boolean that is true if all the questions are answered, and false if not all are answered.
+
+### `getPercentageOfCorrectAnswers()`
+Returns a decimal value of how many answers are correct.
+
+### `getAnswers()`
+Returns an Integer ArrayList filled with the selected answers. (1 for option 1, 2 for option 2, 3 for option 3, and 4 for option 4).
 
 # YesOrNoQuestions
 YesOrNoQuestions are a simple form of question which show a question with a number, and only allow a yes or no as an answer, while MultipleChoiceQuestions allow [anything](##Options) as an option. To use it in an XML layout just use the following code:
