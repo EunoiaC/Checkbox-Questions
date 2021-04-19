@@ -3,7 +3,7 @@ CheckboxQuestions is a library that provides with different forms of asking ques
 
 #### Table of Contents 
 
-[YEET](##Settings)
+[YEET](##SettingsBuilder)
 
 <ul>
     <li><a href="#QuestionsList">QuestionsList</a>
