@@ -229,6 +229,55 @@ The `question_text_size` attribute allows you to set the question text size.
 ## Option Text Size
 The `option_text_size` attribute allows you to set the option text size.
 
+# MultipleChoiceQuestions
+```xml
+<com.aadyad.checkboxquestion.MultipleChoiceQuestion
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:question_title="What is the slope-intercept equation of a line?"
+        app:question_number="10"
+        app:number_enabled="true"
+        app:option_text_size="20"
+        app:question_text_size="25"
+        app:spacing_between_boxes="30"
+        app:checkbox_orientation="full_vertical"
+        app:option_1="x = ym + b"
+        app:option_2="y = mx + b"
+        app:option_3="y = mb * x"
+        app:option_4="b = my / x"/>
+```
+
+
+## Number Enabled
+The `number_enabled` attribute allows you to make the number visible or not.
+
+## Spacing Between Boxes
+The `spacing_between_boxes` attribute allows you to choose the spacing between the checkboxes.
+
+## Checkbox Location
+The `checkbox_location` attribute allows you to choose whether the checkboxes are to the left, center, or right of the screen. To specify where they are just use `app:checkbox_location="left"`, `app:checkbox_location="center"`, or`app:checkbox_location="right"`.
+
+## Checkbox Orientation
+The `checkbox_orientation` attribute allows you to choose whether the checkboxes are stacked or if they are horizontal. To stack them use `app:checkbox_orientation="split_vertical"` to use the horizontally use `app:checkbox_orientation="horizontal"`
+
+## Question Number
+The `question_number` attribute allows you to set the number of the question.
+
+## Question Title
+The `question_title` attribute allows you to set the question text.
+
+## Question Text Size
+The `question_text_size` attribute allows you to set the question text size.
+
+## Option Text Size
+The `option_text_size` attribute allows you to set the option text size.
+
+## Options
+The `option_1` attribute lets you set the text for option 1.
+The `option_2` attribute lets you set the text for option 2.
+The `option_3` attribute lets you set the text for option 3.
+The `option_4` attribute lets you set the text for option 4.
+
 # Questions
 Questions are an object that allow you to make a QuestionList full of Multiple Choice Questions.
 There are 2 constructors for the Question object, which means there are 2 ways to define your Question object
@@ -251,5 +300,3 @@ Question q = new Question("What is the slope intercept equation of a line?", "y 
 In this example, the second arg is a string of the correct answer. Everything else stays the same.
 
 If there is no answer, the second arg can be set to Question.NO_ANSWER (or 0).
-
-# MultipleChoiceQuestions
