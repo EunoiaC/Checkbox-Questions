@@ -1,7 +1,10 @@
 # CheckboxQuestions
 CheckboxQuestions is a library that provides with different forms of asking questions. So far there are [YesOrNoQuestions](#YesOrNoQuestions) and [MultipleChoiceQuestions](#MultipleChoiceQuestions).
 
-#### Table of Contents  
+#### Table of Contents 
+
+[YEET](##Settings)
+
 <ul>
     <li><a href="#QuestionsList">QuestionsList</a>
         <ul>
@@ -125,6 +128,7 @@ linearLayout.addView(questionList.getQuestionViews());
 ``` 
 
 ## All methods
+
 
 # YesOrNoQuestions
 YesOrNoQuestions are a simple form of question which show a question with a number, and only allow a yes or no as an answer, while MultipleChoiceQuestions allow [anything](##Options) as an option. To use it in an XML layout just use the following code:
