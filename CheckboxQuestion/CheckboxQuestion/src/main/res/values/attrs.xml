@@ -8,6 +8,7 @@
         <attr name="checkbox_orientation" format="integer">
             <enum name="horizontal" value="0"/>
             <enum name="split_vertical" value="1"/>
+            <enum name="vertical" value="1"/>
             <enum name="auto" value="2"/>
             <enum name="full_vertical" value="3"/>
         </attr>
