@@ -3,11 +3,18 @@ CheckboxQuestions is a library that provides with different forms of asking ques
 
 #### Table of Contents  
 <ul>
-    <li><a href="#QuestionsList">QuestionsList</a></li>
+    <li><a href="#QuestionsList">QuestionsList</a>
+        <ul>
+            <li>a href="##Settings Builder">Settings Builder</li>
+            <li>a href="##List of questions">List of questions</li>
+            <li>a href="##Creating the QuestionList">Initialization</li>
+            <li>a href="##Getting the questions and diplaying them">Displaying views</li>
+            <li>a href="##All methods">Methods</li>
+        </ul>
+    </li>
     <li><a href="#YesOrNoQuestions">YesOrNoQuestions</a></li>
     <li><a href="#MultipleChoiceQuestions">MultipleChoiceQuestions</a></li>
     <li><a href="#Questions">Questions</a></li>
-    
 </ul>
 
 # QuestionsList
@@ -58,6 +65,9 @@ We mainly only care about the linear layout in the scrollview.
 ```java
 LinearLayout linearLayout = findViewById(R.id.questionLayout);
 ```
+
+## Settings Builder
+
 Now we want to create our QuestionList, but first you have to give it some settings so the view is displayed to your likings.
 
 ```java
@@ -76,6 +86,8 @@ The `setNumberEnabled()` allows you to choose whether the questions have a visib
 The `setSpacing()` allows you to choose how far apart the options are from eachother.
 The `setQuestionTextSize()` and `setOptionTextSize()` allows you to choose the text size for the question and th options respectively.
 
+## List of questions
+
 Now we want to create our list of questions. There are 2 ways to do this. If you want simple yes or no questions, just create a String array full of questions.
 
 ```java
@@ -89,13 +101,17 @@ ArrayList<Question> list = new ArrayList<>();
 
 list.add(new Question("How are you?", 0, "Good", "Bad"));
 ```
-(You can add as many questions as you like)
+(You can add as many questions (up to 4) as you like)
+
+## Creating the QuestionList
 
 Next we want to create our Question List using the settings you created and the list/array you created.
 
 ```java
-questionList = new QuestionList(list, questionListSettings, context);
+QuestionList questionList = new QuestionList(list, questionListSettings, context);
 ```
+
+## Getting the questions and diplaying them
 
 Now if you want to create the views, just call `createQuestionViews()`.
 
@@ -107,6 +123,8 @@ To add the views to your layout, you can use:
 ```java
 linearLayout.addView(questionList.getQuestionViews());
 ``` 
+
+## All methods
 
 # YesOrNoQuestions
 YesOrNoQuestions are a simple form of question which show a question with a number, and only allow a yes or no as an answer, while MultipleChoiceQuestions allow [anything](##Options) as an option. To use it in an XML layout just use the following code:
