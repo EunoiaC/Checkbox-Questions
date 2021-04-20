@@ -9,12 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MultipleChoiceQuestion extends LinearLayout {
@@ -22,15 +24,20 @@ public class MultipleChoiceQuestion extends LinearLayout {
     public static final int LEFT = 0;
     public static final int CENTER = 1;
     public static final int RIGHT = 2;
+    Context context;
+
+    ArrayList<CheckBox> checkBoxes = new ArrayList<>();
 
     private int buttonClicked = 0; //0 is not clicked, 1 is no, 2 is yes
 
     public MultipleChoiceQuestion(Context context) {
         this(context, null);
+        this.context = context;
     }
 
     public MultipleChoiceQuestion(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        this.context = context;
         setOrientation(LinearLayout.VERTICAL);
         LayoutInflater.from(context).inflate(R.layout.multiple_choice_question, this, true);
 
@@ -77,6 +84,15 @@ public class MultipleChoiceQuestion extends LinearLayout {
         final CheckBox option2 = (CheckBox) findViewById(R.id.answer2);
         final CheckBox option3 = (CheckBox) findViewById(R.id.answer3);
         final CheckBox option4 = (CheckBox) findViewById(R.id.answer4);
+        View spacing1 = findViewById(R.id.spacing1);
+        View layoutSpacing = findViewById(R.id.spacingLayouts);
+        View spacing2 = findViewById(R.id.spacing2);
+        LinearLayout layout = findViewById(R.id.multipleChoiceHolder);
+
+        checkBoxes.add(option1);
+        checkBoxes.add(option2);
+        checkBoxes.add(option3);
+        checkBoxes.add(option4);
 
         setQuestionTextSize(questionTextSize);
         setOptionTextSize(optionTextSize);
@@ -102,6 +118,123 @@ public class MultipleChoiceQuestion extends LinearLayout {
         option3.setText(a3);
         option4.setText(a4);
 
+        LinearLayout templayout = null;
+
+        if (options.length > 4){
+            Log.d("TAG", "init: length greater than 4");
+            for (int i = 4; i < options.length; i++){
+
+                if (templayout == null){
+                    templayout = new LinearLayout(context);
+                    templayout.setOrientation(HORIZONTAL);
+                }
+
+                if (orientation == Question.HORIZONTAL){
+                    throw new RuntimeException("Cannot have more than 4 options when horizontal. Try split_vertical or vertical.");
+                } else if (orientation == Question.SPLIT_VERTICAL){
+                    Log.d("TAG", "init: " + templayout.getChildCount());
+                    if (templayout.getChildCount() == 0){
+                        Log.d("TAG", "init: child count 0");
+                        View spacer = new View(context);
+                        spacer.setLayoutParams(new ViewGroup.LayoutParams(0, spacing));
+                        layout.addView(spacer);
+
+                        //Creating new checkbox
+                        final CheckBox checkBox = new CheckBox(context);
+                        checkBox.setTextSize(optionTextSize);
+                        checkBox.setText(options[i]);
+                        checkBoxes.add(checkBox);
+                        final int finalI = i;
+                        checkBox.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                for (CheckBox checkBox1 : checkBoxes){
+                                    if (!checkBox1.equals(checkBox)){
+                                        checkBox1.setChecked(false);
+                                    }else {
+                                        checkBox1.setChecked(true);
+                                    }
+                                }
+                                buttonClicked = finalI + 1;
+                            }
+                        });
+
+                        templayout.addView(checkBox);
+                        View v = new View(context);
+                        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(spacing, 0);
+                        v.setLayoutParams(params);
+                        templayout.addView(v);
+
+                        try {
+                            String s = options[i + 1];
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            layout.addView(templayout);
+                        }
+                    } else if (templayout.getChildCount() == 2){
+                        Log.d("TAG", "init: child count 2");
+
+                        //Creating new checkbox
+                        final CheckBox checkBox = new CheckBox(context);
+                        checkBox.setTextSize(optionTextSize);
+                        checkBox.setText(options[i]);
+                        checkBoxes.add(checkBox);
+                        final int finalI = i;
+                        checkBox.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                for (CheckBox checkBox1 : checkBoxes){
+                                    if (!checkBox1.equals(checkBox)){
+                                        checkBox1.setChecked(false);
+                                    }else {
+                                        checkBox1.setChecked(true);
+                                    }
+                                }
+                                buttonClicked = finalI + 1;
+                            }
+                        });
+
+                        templayout.addView(checkBox);
+                        layout.addView(templayout);
+                        templayout = null;
+                    }
+                } else if (orientation == Question.FULL_VERTICAL){
+                    Log.d("TAG", "init: " + templayout.getChildCount());
+                    if (templayout.getChildCount() == 0){
+                        Log.d("TAG", "init: child count 0");
+
+                        //Creating new checkbox
+                        final CheckBox checkBox = new CheckBox(context);
+                        checkBox.setTextSize(optionTextSize);
+                        checkBox.setText(options[i]);
+                        checkBoxes.add(checkBox);
+                        final int finalI = i;
+                        checkBox.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                for (CheckBox checkBox1 : checkBoxes){
+                                    if (!checkBox1.equals(checkBox)){
+                                        checkBox1.setChecked(false);
+                                    }else {
+                                        checkBox1.setChecked(true);
+                                    }
+                                }
+                                buttonClicked = finalI + 1;
+                            }
+                        });
+
+                        templayout.addView(checkBox);
+                        View v = new View(context);
+                        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(0, spacing);
+                        v.setLayoutParams(params);
+                        layout.addView(v);
+                        layout.addView(templayout);
+                        templayout = null;
+                    }
+                }
+            }
+        }
+
 //        if (a1 == null || a2 == null){
 //            throw new RuntimeException("A MultipleChoiceQuestion must have 2 or more options!");
 //        }
@@ -123,11 +256,6 @@ public class MultipleChoiceQuestion extends LinearLayout {
         if (option3.getText().toString().equals("")){
             option3.setVisibility(GONE);
         }
-
-        View spacing1 = findViewById(R.id.spacing1);
-        View layoutSpacing = findViewById(R.id.spacingLayouts);
-        View spacing2 = findViewById(R.id.spacing2);
-        LinearLayout layout = findViewById(R.id.multipleChoiceHolder);
 
         ViewGroup.LayoutParams layoutParams1 = spacing1.getLayoutParams();
         ViewGroup.LayoutParams layoutParams2 = spacing2.getLayoutParams();
@@ -206,10 +334,13 @@ public class MultipleChoiceQuestion extends LinearLayout {
         option1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                option2.setChecked(false);
-                option3.setChecked(false);
-                option4.setChecked(false);
-                option1.setChecked(true);
+                for (CheckBox checkBox1 : checkBoxes){
+                    if (!checkBox1.equals(option1)){
+                        checkBox1.setChecked(false);
+                    }else {
+                        option1.setChecked(true);
+                    }
+                }
                 buttonClicked = 1;
             }
         });
@@ -217,10 +348,15 @@ public class MultipleChoiceQuestion extends LinearLayout {
         option2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                option2.setChecked(true);
-                option3.setChecked(false);
-                option4.setChecked(false);
-                option1.setChecked(false);
+                for (CheckBox checkBox1 : checkBoxes){
+                    if (!checkBox1.equals(option2)){
+                        if (checkBox1.isChecked()){
+                            checkBox1.setChecked(false);
+                        }
+                    }else {
+                        checkBox1.setChecked(true);
+                    }
+                }
                 buttonClicked = 2;
             }
         });
@@ -228,10 +364,15 @@ public class MultipleChoiceQuestion extends LinearLayout {
         option3.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                option2.setChecked(false);
-                option3.setChecked(true);
-                option4.setChecked(false);
-                option1.setChecked(false);
+                for (CheckBox checkBox1 : checkBoxes){
+                    if (!checkBox1.equals(option3)){
+                        if (checkBox1.isChecked()){
+                            checkBox1.setChecked(false);
+                        }
+                    }else {
+                        checkBox1.setChecked(true);
+                    }
+                }
                 buttonClicked = 3;
             }
         });
@@ -239,10 +380,15 @@ public class MultipleChoiceQuestion extends LinearLayout {
         option4.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                option2.setChecked(false);
-                option3.setChecked(false);
-                option4.setChecked(true);
-                option1.setChecked(false);
+                for (CheckBox checkBox1 : checkBoxes){
+                    if (!checkBox1.equals(option4)){
+                        if (checkBox1.isChecked()){
+                            checkBox1.setChecked(false);
+                        }
+                    }else {
+                        checkBox1.setChecked(true);
+                    }
+                }
                 buttonClicked = 4;
             }
         });

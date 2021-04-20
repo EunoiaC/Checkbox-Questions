@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                                 .setSpacing(15)
                                 .create();
 
-
                         questionList = new QuestionList(list, questionListSettings, getApplicationContext());
                         questionList.createQuestionViews();
 
