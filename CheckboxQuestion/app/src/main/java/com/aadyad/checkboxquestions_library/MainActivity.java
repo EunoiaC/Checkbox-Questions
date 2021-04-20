@@ -94,10 +94,11 @@ public class MainActivity extends AppCompatActivity {
                                 .setCheckboxLocation(Question.LEFT)
                                 .setCheckBoxOrientation(Question.FULL_VERTICAL)
                                 .setNumberEnabled(false)
-                                .setOptionTextSize(20)
-                                .setQuestionTextSize(24)
+                                .setOptionTextSize(QuestionListSettings.TEXT_SIZE_DEFAULT)
+                                .setQuestionTextSize(QuestionListSettings.TEXT_SIZE_DEFAULT)
                                 .setSpacing(15)
                                 .create();
+
 
                         questionList = new QuestionList(list, questionListSettings, getApplicationContext());
                         questionList.createQuestionViews();

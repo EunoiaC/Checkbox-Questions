@@ -78,27 +78,8 @@ public class MultipleChoiceQuestion extends LinearLayout {
         final CheckBox option3 = (CheckBox) findViewById(R.id.answer3);
         final CheckBox option4 = (CheckBox) findViewById(R.id.answer4);
 
-        if (!(questionLayoutHeight == QuestionListSettings.TEXT_SIZE_DEFAULT)){
-            //Todo: Set height
-        }
-        if (!(optionLayoutHeight == QuestionListSettings.TEXT_SIZE_DEFAULT)){
-            //Todo: Set height
-        }
-
-        if (questionTextSize == QuestionListSettings.TEXT_SIZE_AUTO){
-            //Todo: add code to auto adjust size using height
-        } else if (!(questionTextSize == QuestionListSettings.TEXT_SIZE_DEFAULT)){
-            questionTitle.setTextSize(questionTextSize);
-            questionNumber.setTextSize(questionTextSize);
-        }
-        if (optionTextSize == QuestionListSettings.TEXT_SIZE_AUTO){
-            //Todo: add code to auto adjust size using height
-        }else if (!(optionTextSize == QuestionListSettings.TEXT_SIZE_DEFAULT)){
-            option1.setTextSize(optionTextSize);
-            option2.setTextSize(optionTextSize);
-            option3.setTextSize(optionTextSize);
-            option4.setTextSize(optionTextSize);
-        }
+        setQuestionTextSize(questionTextSize);
+        setOptionTextSize(optionTextSize);
 
         Log.d("TAG", "init: " + Arrays.toString(options));
 
@@ -203,9 +184,9 @@ public class MultipleChoiceQuestion extends LinearLayout {
             spacing2.setLayoutParams(layoutParams2);
         }
 
-        questionTitle.setText(title);
+        setQuestion(title);
         if (numEnabled) {
-            questionNumber.setText(number + ". ");
+            setQuestionNumber(number);
             questionNumber.setVisibility(VISIBLE);
         } else {
             questionNumber.setVisibility(GONE);
@@ -267,29 +248,6 @@ public class MultipleChoiceQuestion extends LinearLayout {
         });
     }
 
-    public void setTextSize(float questionTextSize, float checkBoxTextSize, float height){
-        TextView questionTitle = (TextView) findViewById(R.id.question_title);
-        TextView questionNumber = (TextView) findViewById(R.id.question_number);
-        final CheckBox option1 = (CheckBox) findViewById(R.id.answer1);
-        final CheckBox option2 = (CheckBox) findViewById(R.id.answer2);
-        final CheckBox option3 = (CheckBox) findViewById(R.id.answer3);
-        final CheckBox option4 = (CheckBox) findViewById(R.id.answer4);
-        if (questionTextSize == QuestionListSettings.TEXT_SIZE_AUTO){
-            //Todo: add code to auto adjust size using textheight
-        } else if (!(questionTextSize == QuestionListSettings.TEXT_SIZE_DEFAULT)){
-            questionTitle.setTextSize(questionTextSize);
-            questionNumber.setTextSize(questionTextSize);
-        }
-        if (checkBoxTextSize == QuestionListSettings.TEXT_SIZE_AUTO){
-            //Todo: add code to auto adjust size using textheight
-        }else if (!(checkBoxTextSize == QuestionListSettings.TEXT_SIZE_DEFAULT)){
-            option1.setTextSize(checkBoxTextSize);
-            option2.setTextSize(checkBoxTextSize);
-            option3.setTextSize(checkBoxTextSize);
-            option4.setTextSize(checkBoxTextSize);
-        }
-    }
-
     public int getAnswer() {
         return buttonClicked;
     }
@@ -299,8 +257,36 @@ public class MultipleChoiceQuestion extends LinearLayout {
         questionTitle.setText(question);
     }
 
-    public void setQuestionNumber(String number) {
+    public void setOptionTextSize(float optionTextSize){
+        final CheckBox option1 = (CheckBox) findViewById(R.id.answer1);
+        final CheckBox option2 = (CheckBox) findViewById(R.id.answer2);
+        final CheckBox option3 = (CheckBox) findViewById(R.id.answer3);
+        final CheckBox option4 = (CheckBox) findViewById(R.id.answer4);
+
+        if (optionTextSize == QuestionListSettings.TEXT_SIZE_AUTO){
+            //Todo: add code to auto adjust size using textheight
+        }else if (!(optionTextSize == QuestionListSettings.TEXT_SIZE_DEFAULT)){
+            option1.setTextSize(optionTextSize);
+            option2.setTextSize(optionTextSize);
+            option3.setTextSize(optionTextSize);
+            option4.setTextSize(optionTextSize);
+        }
+    }
+
+    public void setQuestionTextSize(float questionTextSize){
+        TextView questionNumber = (TextView) findViewById(R.id.question_number);
         TextView questionTitle = (TextView) findViewById(R.id.question_title);
-        questionTitle.setText(number + ". ");
+
+        if (questionTextSize == QuestionListSettings.TEXT_SIZE_AUTO){
+            //Todo: add code to auto adjust size using height
+        } else if (!(questionTextSize == QuestionListSettings.TEXT_SIZE_DEFAULT)){
+            questionTitle.setTextSize(questionTextSize);
+            questionNumber.setTextSize(questionTextSize);
+        }
+    }
+
+    public void setQuestionNumber(String number) {
+        TextView questionNumber = (TextView) findViewById(R.id.question_number);
+        questionNumber.setText(number + ". ");
     }
 }

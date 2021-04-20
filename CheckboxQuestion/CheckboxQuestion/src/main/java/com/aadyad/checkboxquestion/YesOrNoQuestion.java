@@ -73,14 +73,9 @@ public class YesOrNoQuestion extends LinearLayout {
 
         final CheckBox yes = (CheckBox) findViewById(R.id.yes);
         final CheckBox no = (CheckBox) findViewById(R.id.no);
-        if (!(questionSize == QuestionListSettings.TEXT_SIZE_DEFAULT)){
-            questionTitle.setTextSize(questionSize);
-            questionNumber.setTextSize(questionSize);
-        }
-        if (!(checkBoxSize == QuestionListSettings.TEXT_SIZE_DEFAULT)){
-            yes.setTextSize(checkBoxSize);
-            no.setTextSize(checkBoxSize);
-        }
+
+        setQuestionTextSize(questionSize);
+        setOptionTextSize(checkBoxSize);
 
         ViewGroup.LayoutParams layoutParams = space.getLayoutParams();
 
@@ -104,9 +99,9 @@ public class YesOrNoQuestion extends LinearLayout {
             space.setLayoutParams(layoutParams);
         }
 
-        questionTitle.setText(title);
+        setQuestion(title);
         if (numEnabled){
-            questionNumber.setText(number + ". ");
+            setQuestionNumber(number);
             questionNumber.setVisibility(VISIBLE);
         } else{
             questionNumber.setVisibility(GONE);
@@ -149,25 +144,32 @@ public class YesOrNoQuestion extends LinearLayout {
         questionTitle.setText(question);
     }
 
-    public void setTextSize(float questionSize, float checkBoxSize, float height){
-        TextView questionTitle = (TextView) findViewById(R.id.question_title);
-        TextView questionNumber = (TextView) findViewById(R.id.question_number);
+    public void setOptionTextSize(float optionTextSize){
         final CheckBox yes = (CheckBox) findViewById(R.id.yes);
         final CheckBox no = (CheckBox) findViewById(R.id.no);
-        if (!(questionSize == QuestionListSettings.TEXT_SIZE_DEFAULT)){
-            questionTitle.setTextSize(questionSize);
-            questionNumber.setTextSize(questionSize);
-        }
-        if (!(checkBoxSize == QuestionListSettings.TEXT_SIZE_DEFAULT)){
-            yes.setTextSize(checkBoxSize);
-            no.setTextSize(checkBoxSize);
-        }
 
-        //yes.setTextSize(size);
+        if (optionTextSize == QuestionListSettings.TEXT_SIZE_AUTO){
+            //Todo: add code to auto adjust size using textheight
+        }else if (!(optionTextSize == QuestionListSettings.TEXT_SIZE_DEFAULT)){
+            yes.setTextSize(optionTextSize);
+            no.setTextSize(optionTextSize);
+        }
+    }
+
+    public void setQuestionTextSize(float questionTextSize){
+        TextView questionNumber = (TextView) findViewById(R.id.question_number);
+        TextView questionTitle = (TextView) findViewById(R.id.question_title);
+
+        if (questionTextSize == QuestionListSettings.TEXT_SIZE_AUTO){
+            //Todo: add code to auto adjust size using height
+        } else if (!(questionTextSize == QuestionListSettings.TEXT_SIZE_DEFAULT)){
+            questionTitle.setTextSize(questionTextSize);
+            questionNumber.setTextSize(questionTextSize);
+        }
     }
 
     public void setQuestionNumber(String number){
-        TextView questionTitle = (TextView) findViewById(R.id.question_title);
-        questionTitle.setText(number + ". ");
+        TextView questionNumber = (TextView) findViewById(R.id.question_number);
+        questionNumber.setText(number + ". ");
     }
 }
