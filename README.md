@@ -152,7 +152,7 @@ ArrayList<Question> list = new ArrayList<>();
 
 list.add(new Question("How are you?", 0, "Good", "Bad"));
 ```
-(You can add as many questions (up to 4) as you like)
+(You can add as many questions as you like)
 
 ## Creating the QuestionList
 
