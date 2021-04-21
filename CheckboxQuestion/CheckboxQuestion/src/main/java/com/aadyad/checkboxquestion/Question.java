@@ -24,9 +24,9 @@ public class Question {
     int correctAnswer;
     String[] options;
 
-    public Question(String question, int correctAnswer, String... options) {
+    public Question(String question, int correctAnswer, String type, String... options) {
         this.question = question;
-        type = "YesOrNoQuestion";
+        this.type = type;
         this.correctAnswer = correctAnswer;
         this.options = options;
     }
