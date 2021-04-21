@@ -43,7 +43,7 @@ In your project level build.gradle first add JitPack:
 In your app level build.gradle add:
 ```gradle
 dependencies {
-    implementation 'com.github.Cyber-cp:CheckboxQuestions:v1.2.0'
+    implementation 'com.github.Cyber-cp:CheckboxQuestions:v1.2.1'
 }
 ```
 
@@ -62,7 +62,7 @@ Then add the dependancy:
 	<dependency>
 	    <groupId>com.github.Cyber-cp</groupId>
 	    <artifactId>CheckboxQuestions</artifactId>
-	    <version>v1.2.0</version>
+	    <version>v1.2.1</version>
 	</dependency>
 ```
 
