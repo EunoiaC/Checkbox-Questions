@@ -1,5 +1,5 @@
 # CheckboxQuestions
-CheckboxQuestions is a library that provides with different forms of asking questions. So far there are [YesOrNoQuestions](#YesOrNoQuestions) and [MultipleChoiceQuestions](#MultipleChoiceQuestions).
+CheckboxQuestions is a library that provides with different forms of asking questions. So far there are [YesOrNoQuestions](#YesOrNoQuestions) and [MultipleChoiceQuestions](#MultipleChoiceQuestions). These questions utilize checkboxes to make an elegant looking UI that will fit seamlessly into your app.
 
 #### Table of Contents
 
