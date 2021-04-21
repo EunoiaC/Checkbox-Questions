@@ -290,7 +290,7 @@ One way:
 ```java
 Question q = new Question("What is the slope intercept equation of a line?", 2, Question.MULTIPLE_CHOICE_QUESTION, "x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y");
 ```
-The first argument that was passed is the question, The third arg is the tyoe of question, the fourth arg is a String array full of possible answers, and the second arg is the index (this index STARTS at 1, NOT 0) of the correct answer in the array. 
+The first argument that was passed is the question, The third arg is the type of question, the fourth arg is a String array full of possible answers, and the second arg is the index (this index STARTS at 1, NOT 0) of the correct answer in the array. 
 
 The fourth arg can also be written as:
 ```java
