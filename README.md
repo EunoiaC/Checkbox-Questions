@@ -40,10 +40,12 @@ In your project level build.gradle first add JitPack:
 		}
 	}
 ```
+The latest release is `v1.2.2`
+
 In your app level build.gradle add:
 ```gradle
 dependencies {
-    implementation 'com.github.Cyber-cp:CheckboxQuestions:v1.2.1'
+    implementation 'com.github.Cyber-cp:CheckboxQuestions:LATEST_RELEASE'
 }
 ```
 
@@ -62,7 +64,7 @@ Then add the dependancy:
 	<dependency>
 	    <groupId>com.github.Cyber-cp</groupId>
 	    <artifactId>CheckboxQuestions</artifactId>
-	    <version>v1.2.1</version>
+	    <version>LATEST_RELEASE</version>
 	</dependency>
 ```
 
