@@ -299,7 +299,7 @@ new String[]{"x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y"}
 
 Another way to create a Question is:
 ```java
-Question q = new Question("What is the slope intercept equation of a line?", "y = mx + b", Question.MULTIPLE_CHOICE, "x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y");
+Question q = new Question("What is the slope intercept equation of a line?", "y = mx + b", Question.MULTIPLE_CHOICE_QUESTION, "x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y");
 ```
 In this example, the second arg is a string of the correct answer. Everything else stays the same.
 
