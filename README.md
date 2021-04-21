@@ -139,18 +139,18 @@ The `setQuestionTextSize()` and `setOptionTextSize()` allows you to choose the t
 
 ## List of questions
 
-Now we want to create our list of questions. There are 2 ways to do this. If you want simple yes or no questions, just create a String array full of questions.
+Now we want to create our list of questions. There are 2 ways to do this. If you want simple yes or no questionaire, just create a String array full of questions.
 
 ```java
 String[] string = new String[]{"Is 9+2 = 11?", "Are you happy?", "Did you eat breakfast?"};
 ```
 
-If you want to use multiple choice questions, create an ArrayList of [Questions](#question).
+If you want to make questions with a correct answer, create an ArrayList of [Questions](#question).
 
 ```java
 ArrayList<Question> list = new ArrayList<>();
 
-list.add(new Question("How are you?", 0, "Good", "Bad"));
+list.add(new Question("How are you?", 0, Question.MULTIPLE_CHOICE_QUESTION, "Good", "Bad"));
 ```
 (You can add as many questions as you like)
 
@@ -288,18 +288,18 @@ There are 2 constructors for the Question object, which means there are 2 ways t
 
 One way:
 ```java
-Question q = new Question("What is the slope intercept equation of a line?", 2, "x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y");
+Question q = new Question("What is the slope intercept equation of a line?", 2, Question.MULTIPLE_CHOICE_QUESTION, "x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y");
 ```
-The first argument that was passed is the question, the third arg is a String array full of possible answers, and the second arg is the index (this index STARTS at 1, NOT 0) of the correct answer in the array.
+The first argument that was passed is the question, The third arg is the tyoe of question, the fourth arg is a String array full of possible answers, and the second arg is the index (this index STARTS at 1, NOT 0) of the correct answer in the array. 
 
-The third arg can also be written as:
+The fourth arg can also be written as:
 ```java
 new String[]{"x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y"}
 ```
 
 Another way to create a Question is:
 ```java
-Question q = new Question("What is the slope intercept equation of a line?", "y = mx + b", "x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y");
+Question q = new Question("What is the slope intercept equation of a line?", "y = mx + b", Question.MULTIPLE_CHOICE, "x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y");
 ```
 In this example, the second arg is a string of the correct answer. Everything else stays the same.
 
