@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    list.add(new Question(question, correctAnswer, answers));
+                    list.add(new Question(question, correctAnswer, Question.MULTIPLE_CHOICE_QUESTION, answers));
                 }
 
                 MainActivity.this.runOnUiThread(new Runnable() {

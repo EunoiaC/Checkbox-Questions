@@ -4,8 +4,11 @@ import android.util.Log;
 
 public class Question {
 
-    //TODO: Add type to question and create a customview which allows input instead of checkboxes.
+    //TODO: Create MultipleAnswerQuestions
 
+    public static final String MULTIPLE_CHOICE_QUESTION = "MultipleChoiceQuestion";
+    public static final String YES_OR_NO_QUESTION = "YesOrNoQuestion";
+    public static final String MULTIPLE_ANSWER_QUESTION = "MultipleAnswerQuestion";
     public static final int LEFT = 0;
     public static final int HORIZONTAL = 0;
     public static final int VERTICAL = 1;
@@ -17,17 +20,20 @@ public class Question {
     public static final int AUTO = 2;
 
     String question;
+    String type;
     int correctAnswer;
     String[] options;
 
     public Question(String question, int correctAnswer, String... options) {
         this.question = question;
+        type = "YesOrNoQuestion";
         this.correctAnswer = correctAnswer;
         this.options = options;
     }
 
-    public Question(String question, String correctAnswer, String... options) {
+    public Question(String question, String correctAnswer, String type, String... options) {
         this.question = question;
+        this.type = type;
         this.options = options;
         this.correctAnswer = getIndexOfString(correctAnswer) + 1;
     }

@@ -39,11 +39,21 @@ public class QuestionList {
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         if (questions == null){
             for (Question q : choiceQuestions){
-                Log.d("TAG", "createQuestionViews: " + Arrays.toString(q.options));
+                if (q.type.equals(Question.MULTIPLE_CHOICE_QUESTION)) {
+                    Log.d("TAG", "createQuestionViews: " + Arrays.toString(q.options));
+                    MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(context);
+                    multipleChoiceQuestion.init(q.question, String.valueOf(i), settings.isNumEnabled(), settings.getSpacing(), settings.getCheckBoxOrientation(), settings.getCheckBoxLocation(), settings.getQuestionTextSize(), settings.getCheckBoxTextSize(), settings.getQuestionLayoutHeight(), settings.getOptionLayoutHeight(), q.options);
+                    linearLayout.addView(multipleChoiceQuestion);
+                }else if (q.type.equals(Question.YES_OR_NO_QUESTION)){
+                    YesOrNoQuestion yesOrNoQuestion = new YesOrNoQuestion(context);
+                    yesOrNoQuestion.init(q.question, String.valueOf(i), settings.isNumEnabled(), settings.getSpacing(), settings.getCheckBoxOrientation(), settings.getCheckBoxLocation(), settings.getQuestionTextSize(), settings.getCheckBoxTextSize(), settings.getQuestionLayoutHeight(), settings.getOptionLayoutHeight());
+                    linearLayout.addView(yesOrNoQuestion);
+                } else if (q.type.equals(Question.MULTIPLE_ANSWER_QUESTION)){
+                    //Todo: Add code for multipleanswerquestion
+                } else{
+                    throw new RuntimeException("Type " + q.type + " does not exist.");
+                }
                 i++;
-                MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(context);
-                multipleChoiceQuestion.init(q.question, String.valueOf(i), settings.isNumEnabled(), settings.getSpacing(), settings.getCheckBoxOrientation(), settings.getCheckBoxLocation(), settings.getQuestionTextSize(), settings.getCheckBoxTextSize(), settings.getQuestionLayoutHeight(), settings.getOptionLayoutHeight(), q.options);
-                linearLayout.addView(multipleChoiceQuestion);
             }
         } else {
             for (String q : questions) {
