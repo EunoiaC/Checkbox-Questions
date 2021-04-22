@@ -34,6 +34,8 @@ CheckboxQuestions is a library that provides with different forms of asking ques
 ## XML demo
 <img width="320" alt="demo" src="https://user-images.githubusercontent.com/68039511/115741228-673bad80-a344-11eb-939c-f63d8c4be54c.png">
 
+(Second question number is Two instead of 2 as to showcase you can put anything you want as a number)
+
 ## QuestionList demo
 
 https://user-images.githubusercontent.com/68039511/115741726-d87b6080-a344-11eb-911c-4c9279c36e7d.mov
