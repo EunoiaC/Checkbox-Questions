@@ -2,11 +2,8 @@ package com.aadyad.checkboxquestion;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -81,10 +78,10 @@ public class QuestionList {
                 multipleChoiceQuestion = (MultipleChoiceQuestion) v;
             }
             if (yesOrNoQuestion != null){
-                yesOrNoQuestion.setLayoutOrientation(orientation);
+                yesOrNoQuestion.setCheckboxOrientation(orientation);
             }else {
                 assert multipleChoiceQuestion != null;
-                multipleChoiceQuestion.setLayoutOrientation(orientation);
+                multipleChoiceQuestion.setCheckboxOrientation(orientation);
             }
         }
         createQuestionViews();
@@ -193,8 +190,7 @@ public class QuestionList {
 
     public void addOnValueChangedRunnable(int index, Runnable r){
         try {
-            MultipleChoiceQuestion multipleChoiceQuestion = (MultipleChoiceQuestion) linearLayout.getChildAt(index);
-            multipleChoiceQuestion.doOnValueChanged(r);
+            ((MultipleChoiceQuestion) getQuestion(index)).doOnValueChanged(r);
         } catch (Exception e) {
             YesOrNoQuestion yesOrNoQuestion = (YesOrNoQuestion) linearLayout.getChildAt(index);
             //Todo: add do on value changed

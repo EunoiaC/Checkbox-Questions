@@ -163,7 +163,7 @@ public class YesOrNoQuestion extends LinearLayout {
         questionNumber.setText(number + ". ");
     }
 
-    public void setLayoutOrientation(int orientation){
+    public void setCheckboxOrientation(int orientation){
 
         View space = findViewById(R.id.spacing);
 

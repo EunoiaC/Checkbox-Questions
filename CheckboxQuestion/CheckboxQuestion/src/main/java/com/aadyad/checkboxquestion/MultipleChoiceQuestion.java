@@ -9,10 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -282,7 +280,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
             layout.setGravity(Gravity.RIGHT);
         }
 
-        setLayoutOrientation(orientation);
+        setCheckboxOrientation(orientation);
 
         setQuestion(title);
         if (numEnabled) {
@@ -412,7 +410,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
         questionNumber.setText(number + ". ");
     }
 
-    public void setLayoutOrientation(int orientation){
+    public void setCheckboxOrientation(int orientation){
         View spacing1 = findViewById(R.id.spacing1);
         View layoutSpacing = findViewById(R.id.spacingLayouts);
         View spacing2 = findViewById(R.id.spacing2);
