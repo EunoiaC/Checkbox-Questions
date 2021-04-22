@@ -211,7 +211,10 @@ Returns a decimal value of how many answers are correct.
 Returns an Integer ArrayList filled with the selected answers. (1 for option 1, 2 for option 2, 3 for option 3, and 4 for option 4).
 
 ### `getQuestion(int index)`
-Returns a view that can either be a MultipleChoiceQuestion or YesOrNoQuestion.
+Returns a view that can either be a MultipleChoiceQuestion or YesOrNoQuestion. You can cast the view to a specific type of question and do any methods you want with it.
+```java
+((MultipleChoiceQuestion) questionList.getQuestion(1)).setCheckedOption(0);
+```
 
 # YesOrNoQuestions
 YesOrNoQuestions are a simple form of question which show a question with a number, and only allow a yes or no as an answer, while MultipleChoiceQuestions allow [anything](##Options) as an option. To use it in an XML layout just use the following code:
