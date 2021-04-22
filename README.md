@@ -5,6 +5,10 @@ CheckboxQuestions is a library that provides with different forms of asking ques
 
 <ul>
 	<li><a href="#Images">Images</a>
+	<ul>
+		<li><a href="#XML-demo">XML demo</li></li>
+		<li><a href="#QuestionList-demo">QuestionList demo</li></li>
+	</ul>
 	<li><a href="#Implementation">Implementation</a>
         <ul>
             <li><a href="#For-Gradle">Gradle</li>
@@ -26,6 +30,14 @@ CheckboxQuestions is a library that provides with different forms of asking ques
 </ul>
 
 # Images
+
+## XML demo
+<img width="320" alt="demo" src="https://user-images.githubusercontent.com/68039511/115741228-673bad80-a344-11eb-939c-f63d8c4be54c.png">
+
+## QuestionList demo
+
+https://user-images.githubusercontent.com/68039511/115741726-d87b6080-a344-11eb-911c-4c9279c36e7d.mov
+
 
 
 # Implementation
