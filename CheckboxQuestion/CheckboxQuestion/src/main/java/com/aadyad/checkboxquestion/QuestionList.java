@@ -37,7 +37,7 @@ public class QuestionList {
     }
 
     public void createQuestionViews(){
-        int i = 0;
+        int i = 1;
         linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         if (questions == null){
