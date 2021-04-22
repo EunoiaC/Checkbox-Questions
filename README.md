@@ -43,7 +43,7 @@ https://user-images.githubusercontent.com/68039511/115741726-d87b6080-a344-11eb-
 
 # Implementation
 
-### The latest release is `v1.2.3`
+### The latest release is `v1.2.4`
 
 ## For Gradle
 In your project level build.gradle first add JitPack:
