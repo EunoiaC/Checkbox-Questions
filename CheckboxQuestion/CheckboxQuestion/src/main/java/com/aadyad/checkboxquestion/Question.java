@@ -22,25 +22,30 @@ public class Question {
     String question;
     String type;
     int correctAnswer;
-    String[] options;
+    String[] options = new String[]{"Yes", "No"};
 
     public Question(String question, int correctAnswer, String type, String... options) {
         this.question = question;
         this.type = type;
+        if (options != null){
+            this.options = options;
+        }
         this.correctAnswer = correctAnswer;
-        this.options = options;
     }
 
     public Question(String question, String correctAnswer, String type, String... options) {
         this.question = question;
         this.type = type;
-        this.options = options;
+        if (options != null){
+            this.options = options;
+        }
         this.correctAnswer = getIndexOfString(correctAnswer) + 1;
     }
 
     private int getIndexOfString(String s) {
         for (int i = 0; i < options.length; i++) {
             if (options[i].equals(s)) {
+                Log.d("Question", "getIndexOfString: " + i);
                 return i;
             }
         }

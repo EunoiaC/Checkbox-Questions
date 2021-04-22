@@ -2,11 +2,14 @@ package com.aadyad.checkboxquestions_library;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.aadyad.checkboxquestion.MultipleChoiceQuestion;
 import com.aadyad.checkboxquestion.Question;
 import com.aadyad.checkboxquestion.QuestionList;
 import com.aadyad.checkboxquestion.QuestionListSettings;
@@ -45,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         client = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url("https://opentdb.com/api.php?amount=20&category=9&difficulty=easy&type=multiple")
+                .url("https://opentdb.com/api.php?amount=20&category=9&difficulty=medium&type=multiple")
                 .build();
 
         Call call = client.newCall(request);

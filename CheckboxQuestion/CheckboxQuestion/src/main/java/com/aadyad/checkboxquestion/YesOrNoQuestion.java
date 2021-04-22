@@ -20,6 +20,9 @@ public class YesOrNoQuestion extends LinearLayout {
     public static final int CENTER = 1;
     public static final int RIGHT = 2;
 
+    private LinearLayout layout;
+    private int spacing;
+
     private int buttonClicked = 0; //0 is not clicked, 1 is no, 2 is yes
 
     public YesOrNoQuestion(Context context) {
@@ -65,8 +68,9 @@ public class YesOrNoQuestion extends LinearLayout {
     public void init(String title, String number, boolean numEnabled, int spacing, int orientation, int boxLocation, float questionSize, float checkBoxSize, float questionLayoutHeight, float optionLayoutHeight) {
         TextView questionTitle = (TextView) findViewById(R.id.question_title);
         TextView questionNumber = (TextView) findViewById(R.id.question_number);
-        View space = findViewById(R.id.spacing);
-        LinearLayout layout = findViewById(R.id.checkBoxHolder);
+        layout = findViewById(R.id.checkBoxHolder);
+
+        this.spacing = spacing;
 
         //Todo: Set height if size == auto.
         //Todo: Also use height
@@ -77,26 +81,12 @@ public class YesOrNoQuestion extends LinearLayout {
         setQuestionTextSize(questionSize);
         setOptionTextSize(checkBoxSize);
 
-        ViewGroup.LayoutParams layoutParams = space.getLayoutParams();
-
         if (boxLocation == LEFT){
             layout.setGravity(Gravity.LEFT);
         } else if (boxLocation == CENTER){
             layout.setGravity(Gravity.CENTER);
         } else if (boxLocation == RIGHT){
             layout.setGravity(Gravity.RIGHT);
-        }
-
-        if (orientation == 0){
-            layoutParams.width = spacing;
-            layoutParams.height = 0;
-            space.setLayoutParams(layoutParams);
-            layout.setOrientation(HORIZONTAL);
-        } else if (orientation == 1 || orientation == 3){
-            layout.setOrientation(VERTICAL);
-            layoutParams.height = spacing;
-            layoutParams.width = 0;
-            space.setLayoutParams(layoutParams);
         }
 
         setQuestion(title);
@@ -121,7 +111,7 @@ public class YesOrNoQuestion extends LinearLayout {
             public void onClick(View v) {
                 no.setChecked(false);
                 yes.setChecked(true);
-                buttonClicked = 2;
+                buttonClicked = 1;
             }
         });
 
@@ -130,7 +120,7 @@ public class YesOrNoQuestion extends LinearLayout {
             public void onClick(View v) {
                 no.setChecked(true);
                 yes.setChecked(false);
-                buttonClicked = 1;
+                buttonClicked = 2;
             }
         });
     }
@@ -171,5 +161,24 @@ public class YesOrNoQuestion extends LinearLayout {
     public void setQuestionNumber(String number){
         TextView questionNumber = (TextView) findViewById(R.id.question_number);
         questionNumber.setText(number + ". ");
+    }
+
+    public void setLayoutOrientation(int orientation){
+
+        View space = findViewById(R.id.spacing);
+
+        ViewGroup.LayoutParams layoutParams = space.getLayoutParams();
+
+        if (orientation == 0){
+            layoutParams.width = spacing;
+            layoutParams.height = 0;
+            space.setLayoutParams(layoutParams);
+            layout.setOrientation(HORIZONTAL);
+        } else if (orientation == 1 || orientation == 3){
+            layout.setOrientation(VERTICAL);
+            layoutParams.height = spacing;
+            layoutParams.width = 0;
+            space.setLayoutParams(layoutParams);
+        }
     }
 }

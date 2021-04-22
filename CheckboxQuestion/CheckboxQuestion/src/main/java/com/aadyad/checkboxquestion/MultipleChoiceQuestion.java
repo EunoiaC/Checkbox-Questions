@@ -26,9 +26,13 @@ public class MultipleChoiceQuestion extends LinearLayout {
     public static final int RIGHT = 2;
     Context context;
 
+    private Runnable onValueChanged;
+
     ArrayList<CheckBox> checkBoxes = new ArrayList<>();
 
     private int buttonClicked = 0; //0 is not clicked, 1 is no, 2 is yes
+    LinearLayout layout;
+    private int spacing;
 
     public MultipleChoiceQuestion(Context context) {
         this(context, null);
@@ -84,10 +88,18 @@ public class MultipleChoiceQuestion extends LinearLayout {
         final CheckBox option2 = (CheckBox) findViewById(R.id.answer2);
         final CheckBox option3 = (CheckBox) findViewById(R.id.answer3);
         final CheckBox option4 = (CheckBox) findViewById(R.id.answer4);
-        View spacing1 = findViewById(R.id.spacing1);
-        View layoutSpacing = findViewById(R.id.spacingLayouts);
-        View spacing2 = findViewById(R.id.spacing2);
-        LinearLayout layout = findViewById(R.id.multipleChoiceHolder);
+        layout = findViewById(R.id.multipleChoiceHolder);
+
+        if (onValueChanged == null) {
+            onValueChanged = new Runnable() {
+                @Override
+                public void run() {
+
+                }
+            };
+        }
+
+        this.spacing = spacing;
 
         checkBoxes.add(option1);
         checkBoxes.add(option2);
@@ -156,6 +168,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
                                     }
                                 }
                                 buttonClicked = finalI + 1;
+                                onValueChanged.run();
                             }
                         });
 
@@ -191,6 +204,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
                                     }
                                 }
                                 buttonClicked = finalI + 1;
+                                onValueChanged.run();
                             }
                         });
 
@@ -220,6 +234,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
                                     }
                                 }
                                 buttonClicked = finalI + 1;
+                                onValueChanged.run();
                             }
                         });
 
@@ -257,10 +272,6 @@ public class MultipleChoiceQuestion extends LinearLayout {
             option3.setVisibility(GONE);
         }
 
-        ViewGroup.LayoutParams layoutParams1 = spacing1.getLayoutParams();
-        ViewGroup.LayoutParams layoutParams2 = spacing2.getLayoutParams();
-        ViewGroup.LayoutParams layoutParams3 = layoutSpacing.getLayoutParams();
-
         //Todo: add option to choose location of question text
 
         if (boxLocation == LEFT){
@@ -271,46 +282,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
             layout.setGravity(Gravity.RIGHT);
         }
 
-        if (orientation == Question.HORIZONTAL){
-            layoutParams1.width = spacing;
-            layoutParams2.width = spacing;
-            layoutParams3.width = spacing;
-            layoutParams1.height = 0;
-            layoutParams2.height = 0;
-            layoutParams3.height= 0;
-            layoutSpacing.setLayoutParams(layoutParams3);
-            spacing1.setLayoutParams(layoutParams1);
-            spacing2.setLayoutParams(layoutParams2);
-            layout.setOrientation(HORIZONTAL);
-        } else if (orientation == Question.SPLIT_VERTICAL){
-            layout.setOrientation(VERTICAL);
-            layoutParams3.width = 0;
-            layoutParams1.width = spacing;
-            layoutParams2.width = spacing;
-            layoutParams3.height = spacing;
-            layoutParams1.height = 0;
-            layoutParams2.height = 0;
-            layoutSpacing.setLayoutParams(layoutParams3);
-            spacing1.setLayoutParams(layoutParams1);
-            spacing2.setLayoutParams(layoutParams2);
-        } else if (orientation == Question.AUTO){
-            //Todo: code auto orientation if a question goes out of view
-        } else if (orientation == Question.FULL_VERTICAL){
-            LinearLayout layout1 = findViewById(R.id.checkBoxHolder1);
-            LinearLayout layout2 = findViewById(R.id.checkBoxHolder2);
-            layout1.setOrientation(VERTICAL);
-            layout2.setOrientation(VERTICAL);
-            layout.setOrientation(VERTICAL);
-            layoutParams3.width = 0;
-            layoutParams1.width = 0;
-            layoutParams2.width = 0;
-            layoutParams3.height = spacing;
-            layoutParams1.height = spacing;
-            layoutParams2.height = spacing;
-            layoutSpacing.setLayoutParams(layoutParams3);
-            spacing1.setLayoutParams(layoutParams1);
-            spacing2.setLayoutParams(layoutParams2);
-        }
+        setLayoutOrientation(orientation);
 
         setQuestion(title);
         if (numEnabled) {
@@ -342,6 +314,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
                     }
                 }
                 buttonClicked = 1;
+                onValueChanged.run();
             }
         });
 
@@ -358,6 +331,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
                     }
                 }
                 buttonClicked = 2;
+                onValueChanged.run();
             }
         });
 
@@ -374,6 +348,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
                     }
                 }
                 buttonClicked = 3;
+                onValueChanged.run();
             }
         });
 
@@ -389,6 +364,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
                         checkBox1.setChecked(true);
                     }
                 }
+                onValueChanged.run();
                 buttonClicked = 4;
             }
         });
@@ -434,5 +410,81 @@ public class MultipleChoiceQuestion extends LinearLayout {
     public void setQuestionNumber(String number) {
         TextView questionNumber = (TextView) findViewById(R.id.question_number);
         questionNumber.setText(number + ". ");
+    }
+
+    public void setLayoutOrientation(int orientation){
+        View spacing1 = findViewById(R.id.spacing1);
+        View layoutSpacing = findViewById(R.id.spacingLayouts);
+        View spacing2 = findViewById(R.id.spacing2);
+
+        Log.d("Orientation", "setLayoutOrientation: " + orientation);
+
+        ViewGroup.LayoutParams layoutParams1 = spacing1.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams2 = spacing2.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams3 = layoutSpacing.getLayoutParams();
+
+        if (orientation == Question.HORIZONTAL){
+            //Log.d("Orientation", "setLayoutOrientation: horizontal");
+            layoutParams1.width = spacing;
+            layoutParams2.width = spacing;
+            layoutParams3.width = spacing;
+            layoutParams1.height = 0;
+            layoutParams2.height = 0;
+            layoutParams3.height= 0;
+            layoutSpacing.setLayoutParams(layoutParams3);
+            spacing1.setLayoutParams(layoutParams1);
+            spacing2.setLayoutParams(layoutParams2);
+            layout.setOrientation(HORIZONTAL);
+        } else if (orientation == Question.SPLIT_VERTICAL){
+            layout.setOrientation(VERTICAL);
+            layoutParams3.width = 0;
+            layoutParams1.width = spacing;
+            layoutParams2.width = spacing;
+            layoutParams3.height = spacing;
+            layoutParams1.height = 0;
+            layoutParams2.height = 0;
+            layoutSpacing.setLayoutParams(layoutParams3);
+            spacing1.setLayoutParams(layoutParams1);
+            spacing2.setLayoutParams(layoutParams2);
+        } else if (orientation == Question.AUTO){
+            //Todo: code auto orientation if a question goes out of view
+        } else if (orientation == Question.FULL_VERTICAL){
+            LinearLayout layout1 = findViewById(R.id.checkBoxHolder1);
+            LinearLayout layout2 = findViewById(R.id.checkBoxHolder2);
+            layout1.setOrientation(VERTICAL);
+            layout2.setOrientation(VERTICAL);
+            layout.setOrientation(VERTICAL);
+            layoutParams3.width = 0;
+            layoutParams1.width = 0;
+            layoutParams2.width = 0;
+            layoutParams3.height = spacing;
+            layoutParams1.height = spacing;
+            layoutParams2.height = spacing;
+            layoutSpacing.setLayoutParams(layoutParams3);
+            spacing1.setLayoutParams(layoutParams1);
+            spacing2.setLayoutParams(layoutParams2);
+        }
+    }
+
+    public void doOnValueChanged(Runnable runnable){
+        this.onValueChanged = runnable;
+    }
+
+    public void setCheckedOption(int option){
+        for (int i = 0; i < checkBoxes.size(); i++){
+            if (i == option - 1){
+                checkBoxes.get(i).setChecked(true);
+                break;
+            }
+        }
+    }
+
+    public void setCheckedOption(String option){
+        for (CheckBox checkBox : checkBoxes){
+            if (checkBox.getText().equals(option)){
+                checkBox.setChecked(true);
+                break;
+            }
+        }
     }
 }

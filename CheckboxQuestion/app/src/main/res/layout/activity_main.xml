@@ -6,28 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp"
+    <Button
+        android:id="@+id/getAnswers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="logAnswers"
+        android:text="Press me!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getAnswers">
 
         <LinearLayout
             android:id="@+id/questionLayout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/getAnswers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="logAnswers"
-                android:text="Press me!" />
+
         </LinearLayout>
 
     </ScrollView>
