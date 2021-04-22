@@ -475,6 +475,8 @@ public class MultipleChoiceQuestion extends LinearLayout {
             if (i == option - 1){
                 checkBoxes.get(i).setChecked(true);
                 break;
+            } else{
+                checkBoxes.get(i).setChecked(false);
             }
         }
     }
@@ -484,6 +486,8 @@ public class MultipleChoiceQuestion extends LinearLayout {
             if (checkBox.getText().equals(option)){
                 checkBox.setChecked(true);
                 break;
+            } else{
+                checkBox.setChecked(false);
             }
         }
     }

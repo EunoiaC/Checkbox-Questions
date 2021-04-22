@@ -181,4 +181,28 @@ public class YesOrNoQuestion extends LinearLayout {
             space.setLayoutParams(layoutParams);
         }
     }
+
+    public void setCheckedOption(int option){
+        final CheckBox yes = (CheckBox) findViewById(R.id.yes);
+        final CheckBox no = (CheckBox) findViewById(R.id.no);
+        if (option == 1){
+            yes.setChecked(true);
+            no.setChecked(false);
+        } else if (option == 2){
+            yes.setChecked(false);
+            no.setChecked(true);
+        }
+    }
+
+    public void setCheckedOption(String option){
+        final CheckBox yes = (CheckBox) findViewById(R.id.yes);
+        final CheckBox no = (CheckBox) findViewById(R.id.no);
+        if (option.equals("Yes")){
+            yes.setChecked(true);
+            no.setChecked(false);
+        } else if (option.equals("No")){
+            yes.setChecked(false);
+            no.setChecked(true);
+        }
+    }
 }

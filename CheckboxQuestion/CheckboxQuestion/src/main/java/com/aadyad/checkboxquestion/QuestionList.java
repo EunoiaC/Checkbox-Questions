@@ -175,6 +175,22 @@ public class QuestionList {
         return true;
     }
 
+    public View getQuestion(int index){
+        YesOrNoQuestion yesOrNoQuestion = null;
+        MultipleChoiceQuestion multipleChoiceQuestion = null;
+        View v = linearLayout.getChildAt(index);
+        try {
+            yesOrNoQuestion = (YesOrNoQuestion) v;
+        } catch (ClassCastException e) {
+            multipleChoiceQuestion = (MultipleChoiceQuestion) v;
+        }
+        if (yesOrNoQuestion != null){
+            return yesOrNoQuestion;
+        }else {
+            return multipleChoiceQuestion;
+        }
+    }
+
     public void addOnValueChangedRunnable(int index, Runnable r){
         try {
             MultipleChoiceQuestion multipleChoiceQuestion = (MultipleChoiceQuestion) linearLayout.getChildAt(index);
