@@ -208,6 +208,9 @@ Returns a decimal value of how many answers are correct.
 ### `getAnswers()`
 Returns an Integer ArrayList filled with the selected answers. (1 for option 1, 2 for option 2, 3 for option 3, and 4 for option 4).
 
+### `getQuestion(int index)`
+Returns a view that can either be a MultipleChoiceQuestion or YesOrNoQuestion.
+
 # YesOrNoQuestions
 YesOrNoQuestions are a simple form of question which show a question with a number, and only allow a yes or no as an answer, while MultipleChoiceQuestions allow [anything](##Options) as an option. To use it in an XML layout just use the following code:
 ```xml
