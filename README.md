@@ -215,6 +215,9 @@ Returns a view that can either be a MultipleChoiceQuestion or YesOrNoQuestion. Y
 ```java
 ((MultipleChoiceQuestion) questionList.getQuestion(1)).setCheckedOption(0);
 ```
+### `addOnValueChangedRunnable(int index, Runnable r)`
+Adds a runnable to a question retrieved by the index. 
+
 
 # YesOrNoQuestions
 YesOrNoQuestions are a simple form of question which show a question with a number, and only allow a yes or no as an answer, while MultipleChoiceQuestions allow [anything](##Options) as an option. To use it in an XML layout just use the following code:
@@ -256,6 +259,32 @@ The `question_text_size` attribute allows you to set the question text size.
 
 ## Option Text Size
 The `option_text_size` attribute allows you to set the option text size.
+
+## Methods
+
+### `setCheckedOption(String option)`
+Allows you to choose which option is checked using the option text.
+
+### `setCheckedOption(int option)`
+Allows you to choose which option is checked using the index of the option (Starts at 1, NOT 0).
+
+### `setCheckboxOrientation(int orientation)`
+Sets the orientation of the checkboxes.
+
+### `setQuestionTextSize(float questionTextSize)`
+Sets the textsize of the question.
+
+### `setOptionTextSize(float optionTextSize)`
+Sets the textsize for the options.
+
+### `getAnswer()`
+Returns an int of the selected answer.
+
+### `setQuestion(String question)`
+Sets the question text.
+
+### `setQuestionNumber(String number)`
+Sets the question number.
 
 # MultipleChoiceQuestions
 ```xml
@@ -305,6 +334,32 @@ The `option_1` attribute lets you set the text for option 1.
 The `option_2` attribute lets you set the text for option 2.
 The `option_3` attribute lets you set the text for option 3.
 The `option_4` attribute lets you set the text for option 4.
+
+## Methods
+
+### `setCheckedOption(String option)`
+Allows you to choose which option is checked using the option text.
+
+### `setCheckedOption(int option)`
+Allows you to choose which option is checked using the index of the option (Starts at 1, NOT 0).
+
+### `doOnValueChanged(Runnable runnable)`
+Runs a runnable when a new option is selected.
+
+### `setCheckboxOrientation(int orientation)`
+Sets the orientation of the checkboxes.
+
+### `setQuestionTextSize(float questionTextSize)`
+Sets the textsize of the question.
+
+### `setOptionTextSize(float optionTextSize)`
+Sets the textsize for the options.
+
+### `getAnswer()`
+Returns an int of the selected answer.
+
+### `setQuestion(String question)`
+Sets the question text.
 
 # Questions
 Questions are an object that allow you to make a QuestionList full of Multiple Choice Questions.
