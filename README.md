@@ -43,6 +43,8 @@ https://user-images.githubusercontent.com/68039511/115741726-d87b6080-a344-11eb-
 
 # Implementation
 
+### The latest release is `v1.2.2`
+
 ## For Gradle
 In your project level build.gradle first add JitPack:
 ```gradle
@@ -53,7 +55,6 @@ In your project level build.gradle first add JitPack:
 		}
 	}
 ```
-The latest release is `v1.2.2`
 
 In your app level build.gradle add:
 ```gradle
