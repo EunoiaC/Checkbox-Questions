@@ -208,7 +208,7 @@ Returns a boolean that is true if all the questions are answered, and false if n
 Returns a decimal value of how many answers are correct.
 
 ### `getAnswers()`
-Returns an Object ArrayList filled with the selected answers. (1 for option 1, 2 for option 2, 3 for option 3, and 4 for option 4...). You can loop through the arraylist using `for(Object answer : answers)` and you can try to cast answer to a specifice object, like `(int) answer`.
+Returns an Object ArrayList filled with the selected answers. (1 for option 1, 2 for option 2, 3 for option 3, and 4 for option 4...). You can loop through the arraylist using `for(Object answer : answers)` and you can try to cast answer to a specific object, like `(int) answer`.
 
 ### `getQuestion(int index)`
 Returns a view that can either be a MultipleChoiceQuestion or YesOrNoQuestion. You can cast the view to a specific type of question and do any methods you want with it.
