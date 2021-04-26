@@ -26,6 +26,7 @@ CheckboxQuestions is a library that provides with different forms of asking ques
     </li>
     <li><a href="#YesOrNoQuestions">YesOrNoQuestions</a></li>
     <li><a href="#MultipleChoiceQuestions">MultipleChoiceQuestions</a></li>
+    <li><a href="#MultipleAnswerQuestions">MultipleAnswerQuestions</a></li>
     <li><a href="#Questions">Questions</a></li>
 </ul>
 
@@ -361,9 +362,83 @@ Returns an int of the selected answer.
 ### `setQuestion(String question)`
 Sets the question text.
 
+# MultipleAnswerQuestions
+```xml
+<com.aadyad.checkboxquestion.MultipleAnswerQuestion
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:question_title="Which equations are equivalent to 90 + 30"
+        app:question_number="10"
+        app:number_enabled="true"
+        app:option_text_size="20"
+        app:question_text_size="25"
+        app:spacing_between_boxes="30"
+        app:checkbox_orientation="full_vertical"
+        app:option_1="91 + 29"
+        app:option_2="50 + 70"
+        app:option_3="100 + 20"
+        app:option_4="99 + 890980"/>
+```
+
+## Number Enabled
+The `number_enabled` attribute allows you to make the number visible or not.
+
+## Spacing Between Boxes
+The `spacing_between_boxes` attribute allows you to choose the spacing between the checkboxes.
+
+## Checkbox Location
+The `checkbox_location` attribute allows you to choose whether the checkboxes are to the left, center, or right of the screen. To specify where they are just use `app:checkbox_location="left"`, `app:checkbox_location="center"`, or`app:checkbox_location="right"`.
+
+## Checkbox Orientation
+The `checkbox_orientation` attribute allows you to choose whether the checkboxes are stacked or if they are horizontal. To stack them use `app:checkbox_orientation="split_vertical"` to use the horizontally use `app:checkbox_orientation="horizontal"`
+
+## Question Number
+The `question_number` attribute allows you to set the number of the question.
+
+## Question Title
+The `question_title` attribute allows you to set the question text.
+
+## Question Text Size
+The `question_text_size` attribute allows you to set the question text size.
+
+## Option Text Size
+The `option_text_size` attribute allows you to set the option text size.
+
+## Options
+The `option_1` attribute lets you set the text for option 1.
+The `option_2` attribute lets you set the text for option 2.
+The `option_3` attribute lets you set the text for option 3.
+The `option_4` attribute lets you set the text for option 4.
+
+## Methods
+
+### `setCheckedOption(String option)`
+Allows you to choose which option is checked using the option text.
+
+### `setCheckedOption(int option)`
+Allows you to choose which option is checked using the index of the option (Starts at 1, NOT 0).
+
+### `doOnValueChanged(Runnable runnable)`
+Runs a runnable when a new option is selected.
+
+### `setCheckboxOrientation(int orientation)`
+Sets the orientation of the checkboxes.
+
+### `setQuestionTextSize(float questionTextSize)`
+Sets the textsize of the question.
+
+### `setOptionTextSize(float optionTextSize)`
+Sets the textsize for the options.
+
+### `getAnswer()`
+Returns an Integer ArrayList of the selected answer.
+
+### `setQuestion(String question)`
+Sets the question text.
+
 # Questions
 Questions are an object that allow you to make a QuestionList full of Multiple Choice Questions.
-There are 2 constructors for the Question object, which means there are 2 ways to define your Question object
+There are 3 constructors for the Question object, which means there are 2 ways to define your Question object
 
 One way:
 ```java
@@ -380,6 +455,12 @@ Another way to create a Question is:
 ```java
 Question q = new Question("What is the slope intercept equation of a line?", "y = mx + b", Question.MULTIPLE_CHOICE_QUESTION, "x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y");
 ```
-In this example, the second arg is a string of the correct answer. Everything else stays the same.
 
-If there is no answer, the second arg can be set to Question.NO_ANSWER (or 0).
+The final way is:
+```java
+Question q = new Question("What is the slope intercept equation of a line?", new ArrayList<Integer>(Arrays.asList(1, 2, 3)), Question.MULTIPLE_ANSWER_QUESTION, "x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y");
+```
+
+In this example, the second arg is an Integer ArrayList of the correct answers. Everything else stays the same.
+
+If there is no answer, the second arg can be set to Question.NO_ANSWER (or 0), or null.
