@@ -1,4 +1,4 @@
-package com.aadyad.checkboxquestion;
+package com.aadyad.checkboxquestion.Views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,6 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+
+import com.aadyad.checkboxquestion.Question;
+import com.aadyad.checkboxquestion.QuestionListSettings;
+import com.aadyad.checkboxquestion.R;
 
 public class YesOrNoQuestion extends LinearLayout {
 
@@ -41,16 +45,14 @@ public class YesOrNoQuestion extends LinearLayout {
         int orientation;
         float questionTextSize;
         float checkBozTextSize;
-        float questionLayoutHeight;
-        float optionLayoutHeight;
         boolean numberEnabled;
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.YesOrNoQuestion, 0, 0);
 
         try {
-            optionLayoutHeight = a.getFloat(R.styleable.YesOrNoQuestion_option_layout_height, QuestionListSettings.TEXT_SIZE_DEFAULT);
+            //optionLayoutHeight = a.getFloat(R.styleable.YesOrNoQuestion_option_layout_height, QuestionListSettings.TEXT_SIZE_DEFAULT);
             questionTextSize = a.getFloat(R.styleable.YesOrNoQuestion_question_text_size, QuestionListSettings.TEXT_SIZE_DEFAULT);
             checkBozTextSize = a.getFloat(R.styleable.YesOrNoQuestion_option_text_size, QuestionListSettings.TEXT_SIZE_DEFAULT);
-            questionLayoutHeight = a.getFloat(R.styleable.YesOrNoQuestion_question_layout_height, QuestionListSettings.TEXT_SIZE_DEFAULT);
+            //questionLayoutHeight = a.getFloat(R.styleable.YesOrNoQuestion_question_layout_height, QuestionListSettings.TEXT_SIZE_DEFAULT);
             title = a.getString(R.styleable.YesOrNoQuestion_question_title);
             boxLocation = a.getInt(R.styleable.YesOrNoQuestion_checkbox_location, 0);
             orientation = a.getInt(R.styleable.YesOrNoQuestion_checkbox_orientation, 0);
@@ -61,12 +63,11 @@ public class YesOrNoQuestion extends LinearLayout {
             a.recycle();
         }
 
-        init(title, number, numberEnabled, spacing, orientation, boxLocation, questionTextSize, checkBozTextSize, questionLayoutHeight, optionLayoutHeight);
+        init(title, number, numberEnabled, spacing, orientation, boxLocation, questionTextSize, checkBozTextSize);
     }
 
     // Setup views
-    public void init(String title, String number, boolean numEnabled, int spacing, int orientation, int boxLocation, float questionSize, float checkBoxSize, float questionLayoutHeight, float optionLayoutHeight) {
-        TextView questionTitle = (TextView) findViewById(R.id.question_title);
+    public void init(String title, String number, boolean numEnabled, int spacing, int orientation, int boxLocation, float questionSize, float checkBoxSize) {
         TextView questionNumber = (TextView) findViewById(R.id.question_number);
         layout = findViewById(R.id.checkBoxHolder);
 
@@ -74,9 +75,6 @@ public class YesOrNoQuestion extends LinearLayout {
 
         //Todo: Set height if size == auto.
         //Todo: Also use height
-
-        final CheckBox yes = (CheckBox) findViewById(R.id.yes);
-        final CheckBox no = (CheckBox) findViewById(R.id.no);
 
         setQuestionTextSize(questionSize);
         setOptionTextSize(checkBoxSize);
@@ -96,6 +94,8 @@ public class YesOrNoQuestion extends LinearLayout {
         } else{
             questionNumber.setVisibility(GONE);
         }
+
+        setCheckboxOrientation(orientation);
 
         onFinishInflate();
     }
@@ -169,12 +169,12 @@ public class YesOrNoQuestion extends LinearLayout {
 
         ViewGroup.LayoutParams layoutParams = space.getLayoutParams();
 
-        if (orientation == 0){
+        if (orientation == Question.HORIZONTAL){
             layoutParams.width = spacing;
             layoutParams.height = 0;
             space.setLayoutParams(layoutParams);
             layout.setOrientation(HORIZONTAL);
-        } else if (orientation == 1 || orientation == 3){
+        } else if (orientation == Question.VERTICAL || orientation == Question.FULL_VERTICAL){
             layout.setOrientation(VERTICAL);
             layoutParams.height = spacing;
             layoutParams.width = 0;

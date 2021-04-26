@@ -1,4 +1,4 @@
-package com.aadyad.checkboxquestion;
+package com.aadyad.checkboxquestion.Views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,6 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+
+import com.aadyad.checkboxquestion.Question;
+import com.aadyad.checkboxquestion.QuestionListSettings;
+import com.aadyad.checkboxquestion.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +34,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
 
     private int buttonClicked = 0; //0 is not clicked, 1 is no, 2 is yes
     LinearLayout layout;
+    LinearLayout mainLayout;
     private int spacing;
 
     public MultipleChoiceQuestion(Context context) {
@@ -50,17 +55,17 @@ public class MultipleChoiceQuestion extends LinearLayout {
         String a3;
         String a4;
         int spacing;
-        float questionTextSize, optionTextSize, questionLayoutHeight, optionLayoutHeight;
+        float questionTextSize, optionTextSize;
         int boxLocation;
         int orientation;
         boolean numberEnabled;
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.MultipleChoiceQuestion, 0, 0);
 
         try {
-            optionLayoutHeight = a.getFloat(R.styleable.MultipleChoiceQuestion_option_layout_height, QuestionListSettings.TEXT_SIZE_DEFAULT);
+            //optionLayoutHeight = a.getFloat(R.styleable.MultipleChoiceQuestion_option_layout_height, QuestionListSettings.TEXT_SIZE_DEFAULT);
             questionTextSize = a.getFloat(R.styleable.MultipleChoiceQuestion_question_text_size, QuestionListSettings.TEXT_SIZE_DEFAULT);
             optionTextSize = a.getFloat(R.styleable.MultipleChoiceQuestion_option_text_size, QuestionListSettings.TEXT_SIZE_DEFAULT);
-            questionLayoutHeight = a.getFloat(R.styleable.MultipleChoiceQuestion_question_layout_height, QuestionListSettings.TEXT_SIZE_DEFAULT);
+            //questionLayoutHeight = a.getFloat(R.styleable.MultipleChoiceQuestion_question_layout_height, QuestionListSettings.TEXT_SIZE_DEFAULT);
             a1 = a.getString(R.styleable.MultipleChoiceQuestion_option_1);
             a2 = a.getString(R.styleable.MultipleChoiceQuestion_option_2);
             a3 = a.getString(R.styleable.MultipleChoiceQuestion_option_3);
@@ -75,11 +80,11 @@ public class MultipleChoiceQuestion extends LinearLayout {
             a.recycle();
         }
 
-        init(title, number, numberEnabled, spacing, orientation, boxLocation, questionTextSize, optionTextSize, questionLayoutHeight, optionLayoutHeight, a1, a2, a3, a4);
+        init(title, number, numberEnabled, spacing, orientation, boxLocation, questionTextSize, optionTextSize, a1, a2, a3, a4);
     }
 
     // Setup views
-    public void init(String title, String number, boolean numEnabled, int spacing, int orientation, int boxLocation, float questionTextSize, float optionTextSize, float questionLayoutHeight, float optionLayoutHeight, String... options) {
+    public void init(String title, String number, boolean numEnabled, int spacing, int orientation, int boxLocation, float questionTextSize, float optionTextSize, String... options) {
         TextView questionTitle = (TextView) findViewById(R.id.question_title);
         TextView questionNumber = (TextView) findViewById(R.id.question_number);
         final CheckBox option1 = (CheckBox) findViewById(R.id.answer1);
@@ -87,6 +92,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
         final CheckBox option3 = (CheckBox) findViewById(R.id.answer3);
         final CheckBox option4 = (CheckBox) findViewById(R.id.answer4);
         layout = findViewById(R.id.multipleChoiceHolder);
+        mainLayout = findViewById(R.id.mainLayout);
 
         if (onValueChanged == null) {
             onValueChanged = new Runnable() {
@@ -119,7 +125,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
             a2 = options[1];
             a3 = options[2];
             a4 = options[3];
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
 
@@ -155,6 +161,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
                         checkBox.setText(options[i]);
                         checkBoxes.add(checkBox);
                         final int finalI = i;
+
                         checkBox.setOnClickListener(new OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -272,13 +279,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
 
         //Todo: add option to choose location of question text
 
-        if (boxLocation == LEFT){
-            layout.setGravity(Gravity.LEFT);
-        } else if (boxLocation == CENTER){
-            layout.setGravity(Gravity.CENTER);
-        } else if (boxLocation == RIGHT){
-            layout.setGravity(Gravity.RIGHT);
-        }
+        setCheckBoxLocation(boxLocation);
 
         setCheckboxOrientation(orientation);
 
@@ -291,6 +292,16 @@ public class MultipleChoiceQuestion extends LinearLayout {
         }
 
         onFinishInflate();
+    }
+
+    private void setCheckBoxLocation(int location) {
+        if (location == LEFT){
+            mainLayout.setGravity(Gravity.LEFT);
+        } else if (location == CENTER){
+            mainLayout.setGravity(Gravity.CENTER);
+        } else if (location == RIGHT){
+            mainLayout.setGravity(Gravity.RIGHT);
+        }
     }
 
     @Override

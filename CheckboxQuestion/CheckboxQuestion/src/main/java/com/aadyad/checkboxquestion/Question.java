@@ -2,6 +2,8 @@ package com.aadyad.checkboxquestion;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 public class Question {
 
     //TODO: Create MultipleAnswerQuestions
@@ -22,6 +24,7 @@ public class Question {
     String question;
     String type;
     int correctAnswer;
+    ArrayList<Integer> multipleCorrectAnswer;
     String[] options = new String[]{"Yes", "No"};
 
     public Question(String question, int correctAnswer, String type, String... options) {
@@ -31,6 +34,15 @@ public class Question {
             this.options = options;
         }
         this.correctAnswer = correctAnswer;
+    }
+
+    public Question(String question, ArrayList<Integer> correctAnswer, String type, String... options) {
+        this.question = question;
+        this.type = type;
+        if (options != null){
+            this.options = options;
+        }
+        this.multipleCorrectAnswer = correctAnswer;
     }
 
     public Question(String question, String correctAnswer, String type, String... options) {
@@ -49,6 +61,7 @@ public class Question {
                 return i;
             }
         }
+        Log.d("TAG", "answer not found: " + s);
         return -1;
     }
 

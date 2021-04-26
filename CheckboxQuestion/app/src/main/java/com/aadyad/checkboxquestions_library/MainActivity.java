@@ -2,17 +2,15 @@ package com.aadyad.checkboxquestions_library;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.aadyad.checkboxquestion.MultipleChoiceQuestion;
 import com.aadyad.checkboxquestion.Question;
 import com.aadyad.checkboxquestion.QuestionList;
 import com.aadyad.checkboxquestion.QuestionListSettings;
+import com.aadyad.checkboxquestion.Views.MultipleChoiceQuestion;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -79,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         obj = (JSONObject) array.get(i);
                         question = Jsoup.parse(obj.getString("question")).text();
-                        correctAnswer = obj.getString("correct_answer");
+                        correctAnswer = Jsoup.parse(obj.getString("correct_answer")).text();
                         JSONArray jsonArray = obj.getJSONArray("incorrect_answers");
                         answers = new String[]{Jsoup.parse((String) jsonArray.get(0)).text(), Jsoup.parse((String) jsonArray.get(1)).text(), Jsoup.parse((String) jsonArray.get(2)).text(), Jsoup.parse(correctAnswer).text()};
                         Collections.shuffle(Arrays.asList(answers));
@@ -102,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
                                 .setSpacing(15)
                                 .create();
 
+                        list.add(new Question("Hi", new ArrayList<Integer>(Arrays.asList(1, 2, 3)), Question.MULTIPLE_ANSWER_QUESTION, "sa", "adasda", "adasd", "sdasd", "sahusaudsia"));
+
                         questionList = new QuestionList(list, questionListSettings, getApplicationContext());
                         questionList.createQuestionViews();
 
@@ -121,8 +121,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Questions answered", "logAnswers: " + questionList.areAllQuestionsAnswered());
         Log.d("Questions answered", "percentage: " + questionList.getPercentageOfCorrectAnswers());
         String s = "";
-        for (int i : questionList.getAnswers()) {
-            s += i;
+        for (Object i : questionList.getAnswers()) {
+            try {
+                s += (int) i;
+            } catch (Exception ignored) {
+            }
         }
 
         Log.d("answers", "logAnswers: " + s);
