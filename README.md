@@ -48,7 +48,7 @@ https://user-images.githubusercontent.com/68039511/115741726-d87b6080-a344-11eb-
 
 ### The latest stable release is `v1.3.5`
 
-If you do not use maven or gradle, check out <a href="https://jitpack.io/#Cyber-cp/CheckboxQuestions">this</a> link.
+[![](https://jitpack.io/v/Cyber-cp/CheckboxQuestions.svg)](https://jitpack.io/#Cyber-cp/CheckboxQuestions)
 
 ## For Gradle
 In your project level build.gradle first add JitPack:
