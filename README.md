@@ -225,7 +225,7 @@ Adds a runnable to a question retrieved by the index.
 # YesOrNoQuestions
 YesOrNoQuestions are a simple form of question which show a question with a number, and only allow a yes or no as an answer, while MultipleChoiceQuestions allow [anything](##Options) as an option. To use it in an XML layout just use the following code:
 ```xml
-<com.aadyad.checkboxquestion.YesOrNoQuestion
+<com.aadyad.checkboxquestion.Views.YesOrNoQuestion
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         app:number_enabled="true"
@@ -291,7 +291,7 @@ Sets the question number.
 
 # MultipleChoiceQuestions
 ```xml
-<com.aadyad.checkboxquestion.MultipleChoiceQuestion
+<com.aadyad.checkboxquestion.Views.MultipleChoiceQuestion
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:question_title="What is the slope-intercept equation of a line?"
@@ -366,7 +366,7 @@ Sets the question text.
 
 # MultipleAnswerQuestions
 ```xml
-<com.aadyad.checkboxquestion.MultipleAnswerQuestion
+<com.aadyad.checkboxquestion.Views.MultipleAnswerQuestion
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:question_title="Which equations are equivalent to 90 + 30"
