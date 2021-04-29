@@ -1,4 +1,7 @@
 # CheckboxQuestions
+
+[![](https://jitpack.io/v/Cyber-cp/CheckboxQuestions.svg)](https://jitpack.io/#Cyber-cp/CheckboxQuestions)
+
 CheckboxQuestions is a library that provides with different forms of asking questions. So far there are [YesOrNoQuestions](#YesOrNoQuestions), [MultipleChoiceQuestions](#MultipleChoiceQuestions), and [MultipleAnswerQuestions](#MultipleAnswerQuestions). These questions utilize checkboxes to make an elegant looking UI that will fit seamlessly into your app.
 
 #### Table of Contents
@@ -48,8 +51,6 @@ https://user-images.githubusercontent.com/68039511/115741726-d87b6080-a344-11eb-
 # Implementation
 
 ### The latest stable release is `v1.3.6`
-
-[![](https://jitpack.io/v/Cyber-cp/CheckboxQuestions.svg)](https://jitpack.io/#Cyber-cp/CheckboxQuestions)
 
 ## For Gradle
 In your project level build.gradle first add JitPack:
