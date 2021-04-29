@@ -218,8 +218,8 @@ Returns a view that can either be a MultipleChoiceQuestion or YesOrNoQuestion. Y
 ```java
 ((MultipleChoiceQuestion) questionList.getQuestion(1)).setCheckedOption(0);
 ```
-### `addOnValueChangedRunnable(int index, Runnable r)`
-Adds a runnable to a question retrieved by the index. 
+### `addOnAnswerChangedListener(int index, OnAnswerChangedListener onAnswerChangedListener)`
+A listener which allows you to run code whenever the answer changes, the index is the index of the question in the QuestionList.
 
 
 # YesOrNoQuestions
@@ -264,6 +264,9 @@ The `question_text_size` attribute allows you to set the question text size.
 The `option_text_size` attribute allows you to set the option text size.
 
 ## Methods
+
+### `addOnAnswerChangedListener(OnAnswerChangedListener onAnswerChangedListener)`
+A listener which allows you to run code whenever the answer changes.
 
 ### `setCheckedOption(String option)`
 Allows you to choose which option is checked using the option text.
@@ -346,8 +349,8 @@ Allows you to choose which option is checked using the option text.
 ### `setCheckedOption(int option)`
 Allows you to choose which option is checked using the index of the option (Starts at 1, NOT 0).
 
-### `doOnValueChanged(Runnable runnable)`
-Runs a runnable when a new option is selected.
+### `addOnAnswerChangedListener(OnAnswerChangedListener onAnswerChangedListener)`
+A listener which allows you to run code whenever the answer changes.
 
 ### `setCheckboxOrientation(int orientation)`
 Sets the orientation of the checkboxes.
@@ -420,8 +423,8 @@ Allows you to choose which option is checked using the option text.
 ### `setCheckedOption(int option)`
 Allows you to choose which option is checked using the index of the option (Starts at 1, NOT 0).
 
-### `doOnValueChanged(Runnable runnable)`
-Runs a runnable when a new option is selected.
+### `addOnAnswerChangedListener(OnAnswerChangedListener onAnswerChangedListener)`
+A listener which allows you to run code whenever the answer changes.
 
 ### `setCheckboxOrientation(int orientation)`
 Sets the orientation of the checkboxes.
