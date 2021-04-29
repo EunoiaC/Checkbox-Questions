@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.aadyad.checkboxquestion.OnAnswerChangedListener;
 import com.aadyad.checkboxquestion.Question;
 import com.aadyad.checkboxquestion.QuestionListSettings;
 import com.aadyad.checkboxquestion.R;
@@ -29,7 +30,7 @@ public class MultipleAnswerQuestion extends LinearLayout {
     public static final int RIGHT = 2;
     Context context;
 
-    private Runnable onValueChanged;
+    private OnAnswerChangedListener onAnswerChangedListener;
 
     ArrayList<CheckBox> checkBoxes = new ArrayList<>();
 
@@ -41,11 +42,14 @@ public class MultipleAnswerQuestion extends LinearLayout {
     public MultipleAnswerQuestion(Context context) {
         this(context, null);
         this.context = context;
+        this.onAnswerChangedListener = null;
     }
 
     public MultipleAnswerQuestion(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
+        this.onAnswerChangedListener = null;
+
         setOrientation(LinearLayout.VERTICAL);
         LayoutInflater.from(context).inflate(R.layout.multiple_answer_question, this, true);
 
@@ -96,15 +100,6 @@ public class MultipleAnswerQuestion extends LinearLayout {
 
         layout = findViewById(R.id.multipleChoiceHolder);
         mainLayout = findViewById(R.id.mainLayout);
-
-        if (onValueChanged == null) {
-            onValueChanged = new Runnable() {
-                @Override
-                public void run() {
-
-                }
-            };
-        }
 
         this.spacing = spacing;
 
@@ -176,7 +171,9 @@ public class MultipleAnswerQuestion extends LinearLayout {
                                     //Remove selected answer to integer arraylist
                                     selectedAnswers.remove(selectedAnswer);
                                 }
-                                onValueChanged.run();
+                                if (onAnswerChangedListener != null) {
+                                    onAnswerChangedListener.onAnswerChanged(selectedAnswers);
+                                }
                             }
                         });
 
@@ -213,7 +210,9 @@ public class MultipleAnswerQuestion extends LinearLayout {
                                     //Remove selected answer to integer arraylist
                                     selectedAnswers.remove(selectedAnswer);
                                 }
-                                onValueChanged.run();
+                                if (onAnswerChangedListener != null) {
+                                    onAnswerChangedListener.onAnswerChanged(selectedAnswers);
+                                }
                             }
                         });
 
@@ -244,7 +243,9 @@ public class MultipleAnswerQuestion extends LinearLayout {
                                     //Remove selected answer to integer arraylist
                                     selectedAnswers.remove(selectedAnswer);
                                 }
-                                onValueChanged.run();
+                                if (onAnswerChangedListener != null) {
+                                    onAnswerChangedListener.onAnswerChanged(selectedAnswers);
+                                }
                             }
                         });
 
@@ -328,7 +329,9 @@ public class MultipleAnswerQuestion extends LinearLayout {
                     //Remove selected answer to integer arraylist
                     selectedAnswers.remove(selectedAnswer);
                 }
-                onValueChanged.run();
+                if (onAnswerChangedListener != null) {
+                    onAnswerChangedListener.onAnswerChanged(selectedAnswers);
+                }
             }
         });
 
@@ -343,7 +346,9 @@ public class MultipleAnswerQuestion extends LinearLayout {
                     //Remove selected answer to integer arraylist
                     selectedAnswers.remove(selectedAnswer);
                 }
-                onValueChanged.run();
+                if (onAnswerChangedListener != null) {
+                    onAnswerChangedListener.onAnswerChanged(selectedAnswers);
+                }
             }
         });
 
@@ -358,7 +363,9 @@ public class MultipleAnswerQuestion extends LinearLayout {
                     //Remove selected answer to integer arraylist
                     selectedAnswers.remove(selectedAnswer);
                 }
-                onValueChanged.run();
+                if (onAnswerChangedListener != null) {
+                    onAnswerChangedListener.onAnswerChanged(selectedAnswers);
+                }
             }
         });
 
@@ -373,7 +380,9 @@ public class MultipleAnswerQuestion extends LinearLayout {
                     //Remove selected answer to integer arraylist
                     selectedAnswers.remove(selectedAnswer);
                 }
-                onValueChanged.run();
+                if (onAnswerChangedListener != null) {
+                    onAnswerChangedListener.onAnswerChanged(selectedAnswers);
+                }
             }
         });
     }
@@ -474,8 +483,8 @@ public class MultipleAnswerQuestion extends LinearLayout {
         }
     }
 
-    public void doOnValueChanged(Runnable runnable){
-        this.onValueChanged = runnable;
+    public void addOnAnswerChangedListener(OnAnswerChangedListener onAnswerChangedListener){
+        this.onAnswerChangedListener = onAnswerChangedListener;
     }
 
     public void setCheckedOption(int option){

@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.aadyad.checkboxquestion.OnAnswerChangedListener;
 import com.aadyad.checkboxquestion.Question;
 import com.aadyad.checkboxquestion.QuestionList;
 import com.aadyad.checkboxquestion.QuestionListSettings;
@@ -101,14 +103,52 @@ public class MainActivity extends AppCompatActivity {
                                 .create();
 
                         list.add(new Question("Hi", new ArrayList<Integer>(Arrays.asList(1, 2, 3)), Question.MULTIPLE_ANSWER_QUESTION, "sa", "adasda", "adasd", "sdasd", "sahusaudsia"));
+                        list.add(new Question("Yeet?", Question.NO_ANSWER, Question.YES_OR_NO_QUESTION));
 
                         questionList = new QuestionList(list, questionListSettings, getApplicationContext());
                         questionList.createQuestionViews();
 
+                        questionList.addOnAnswerChangedListener(0, new OnAnswerChangedListener() {
+                            @Override
+                            public void onAnswerChanged(int answer) {
+                                Toast.makeText(MainActivity.this, "Answer: " + answer, Toast.LENGTH_SHORT).show();
+
+                            }
+
+                            @Override
+                            public void onAnswerChanged(ArrayList<Integer> answer) {
+
+                            }
+                        });
+
+                        questionList.addOnAnswerChangedListener(21, new OnAnswerChangedListener() {
+                            @Override
+                            public void onAnswerChanged(int answer) {
+                                Toast.makeText(MainActivity.this, "Answer: " + answer, Toast.LENGTH_SHORT).show();
+
+                            }
+
+                            @Override
+                            public void onAnswerChanged(ArrayList<Integer> answer) {
+
+                            }
+                        });
+
+                        questionList.addOnAnswerChangedListener(20, new OnAnswerChangedListener() {
+                            @Override
+                            public void onAnswerChanged(int answer) {
+
+                            }
+
+                            @Override
+                            public void onAnswerChanged(ArrayList<Integer> answer) {
+                                Toast.makeText(MainActivity.this, "Answer: " + answer, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
                         linearLayout.addView(questionList.getQuestionViews());
                     }
                 });
-
             }
 
             public void onFailure(Call call, IOException e) {

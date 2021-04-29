@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.aadyad.checkboxquestion.OnAnswerChangedListener;
 import com.aadyad.checkboxquestion.Question;
 import com.aadyad.checkboxquestion.QuestionListSettings;
 import com.aadyad.checkboxquestion.R;
@@ -24,6 +25,8 @@ public class YesOrNoQuestion extends LinearLayout {
     public static final int CENTER = 1;
     public static final int RIGHT = 2;
 
+    OnAnswerChangedListener onAnswerChangedListener;
+
     private LinearLayout layout;
     private int spacing;
 
@@ -31,12 +34,14 @@ public class YesOrNoQuestion extends LinearLayout {
 
     public YesOrNoQuestion(Context context) {
         this(context, null);
+        this.onAnswerChangedListener = null;
     }
 
     public YesOrNoQuestion(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         setOrientation(LinearLayout.VERTICAL);
         LayoutInflater.from(context).inflate(R.layout.yes_or_no_question, this, true);
+        this.onAnswerChangedListener = null;
 
         String title;
         String number;
@@ -44,14 +49,14 @@ public class YesOrNoQuestion extends LinearLayout {
         int boxLocation;
         int orientation;
         float questionTextSize;
-        float checkBozTextSize;
+        float checkBoxTextSize;
         boolean numberEnabled;
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.YesOrNoQuestion, 0, 0);
 
         try {
             //optionLayoutHeight = a.getFloat(R.styleable.YesOrNoQuestion_option_layout_height, QuestionListSettings.TEXT_SIZE_DEFAULT);
             questionTextSize = a.getFloat(R.styleable.YesOrNoQuestion_question_text_size, QuestionListSettings.TEXT_SIZE_DEFAULT);
-            checkBozTextSize = a.getFloat(R.styleable.YesOrNoQuestion_option_text_size, QuestionListSettings.TEXT_SIZE_DEFAULT);
+            checkBoxTextSize = a.getFloat(R.styleable.YesOrNoQuestion_option_text_size, QuestionListSettings.TEXT_SIZE_DEFAULT);
             //questionLayoutHeight = a.getFloat(R.styleable.YesOrNoQuestion_question_layout_height, QuestionListSettings.TEXT_SIZE_DEFAULT);
             title = a.getString(R.styleable.YesOrNoQuestion_question_title);
             boxLocation = a.getInt(R.styleable.YesOrNoQuestion_checkbox_location, 0);
@@ -63,7 +68,7 @@ public class YesOrNoQuestion extends LinearLayout {
             a.recycle();
         }
 
-        init(title, number, numberEnabled, spacing, orientation, boxLocation, questionTextSize, checkBozTextSize);
+        init(title, number, numberEnabled, spacing, orientation, boxLocation, questionTextSize, checkBoxTextSize);
     }
 
     // Setup views
@@ -112,6 +117,7 @@ public class YesOrNoQuestion extends LinearLayout {
                 no.setChecked(false);
                 yes.setChecked(true);
                 buttonClicked = 1;
+                onAnswerChangedListener.onAnswerChanged(buttonClicked);
             }
         });
 
@@ -121,6 +127,7 @@ public class YesOrNoQuestion extends LinearLayout {
                 no.setChecked(true);
                 yes.setChecked(false);
                 buttonClicked = 2;
+                onAnswerChangedListener.onAnswerChanged(buttonClicked);
             }
         });
     }
@@ -180,6 +187,10 @@ public class YesOrNoQuestion extends LinearLayout {
             layoutParams.width = 0;
             space.setLayoutParams(layoutParams);
         }
+    }
+
+    public void addOnAnswerChangedListener(OnAnswerChangedListener onAnswerChangedListener) {
+        this.onAnswerChangedListener = onAnswerChangedListener;
     }
 
     public void setCheckedOption(int option){

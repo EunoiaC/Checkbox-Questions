@@ -22,7 +22,7 @@ public class QuestionList {
     Context context;
     int orientation;
 
-    public QuestionList(ArrayList<Question> questions, QuestionListSettings settings, Context context){
+    public QuestionList(ArrayList<Question> questions, QuestionListSettings settings, Context context) {
         choiceQuestions = questions;
         this.settings = settings;
         this.context = context;
@@ -30,7 +30,7 @@ public class QuestionList {
         linearLayout = new LinearLayout(context);
     }
 
-    public QuestionList(String[] questions, QuestionListSettings settings, Context context){
+    public QuestionList(String[] questions, QuestionListSettings settings, Context context) {
         this.questions = questions;
         this.settings = settings;
         this.orientation = settings.getCheckBoxOrientation();
@@ -38,12 +38,12 @@ public class QuestionList {
         linearLayout = new LinearLayout(context);
     }
 
-    public void createQuestionViews(){
+    public void createQuestionViews() {
         int i = 1;
         linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        if (questions == null){
-            for (Question q : choiceQuestions){
+        if (questions == null) {
+            for (Question q : choiceQuestions) {
                 switch (q.type) {
                     case Question.MULTIPLE_CHOICE_QUESTION:
                         Log.d("TAG", "createQuestionViews: " + Arrays.toString(q.options));
@@ -77,7 +77,7 @@ public class QuestionList {
 
     }
 
-    public void setLayoutOrientation(int orientation){
+    public void setLayoutOrientation(int orientation) {
         this.orientation = orientation;
         for (int i = 0; i < linearLayout.getChildCount(); i++) {
             YesOrNoQuestion yesOrNoQuestion;
@@ -108,7 +108,7 @@ public class QuestionList {
         createQuestionViews();
     }
 
-    public float getPercentageOfCorrectAnswers(){
+    public float getPercentageOfCorrectAnswers() {
         int correctAnswers = 0;
         int allAnswers = linearLayout.getChildCount();
         for (int i = 0; i < linearLayout.getChildCount(); i++) {
@@ -122,9 +122,9 @@ public class QuestionList {
                 Log.d("TAG", "answer: " + answer);
                 int correctAnswer = choiceQuestions.get(i).correctAnswer;
                 Log.d("TAG", "correct answer: " + correctAnswer);
-                if (correctAnswer == 0){
+                if (correctAnswer == 0) {
                     allAnswers--;
-                } else if (answer == correctAnswer){
+                } else if (answer == correctAnswer) {
                     correctAnswers++;
                 }
             } catch (ClassCastException ignored) {
@@ -137,9 +137,9 @@ public class QuestionList {
                 Log.d("TAG", "answer: " + answer);
                 int correctAnswer = choiceQuestions.get(i).correctAnswer;
                 Log.d("TAG", "correct answer: " + correctAnswer);
-                if (correctAnswer == 0){
+                if (correctAnswer == 0) {
                     allAnswers--;
-                } else if (answer == correctAnswer){
+                } else if (answer == correctAnswer) {
                     correctAnswers++;
                 }
             } catch (Exception ignored) {
@@ -154,9 +154,9 @@ public class QuestionList {
                 ArrayList<Integer> correctAnswer = choiceQuestions.get(i).multipleCorrectAnswer;
                 Collections.sort(correctAnswer);
                 Log.d("TAG", "correct answer: " + correctAnswer);
-                if (correctAnswer.size() == 0 || correctAnswer == null){
+                if (correctAnswer.size() == 0 || correctAnswer == null) {
                     allAnswers--;
-                } else if (answer.equals(correctAnswer)){
+                } else if (answer.equals(correctAnswer)) {
                     correctAnswers++;
                 }
             } catch (ClassCastException ignored) {
@@ -165,10 +165,10 @@ public class QuestionList {
         }
         Log.d("TAG", "getPercentageOfCorrectAnswers: " + correctAnswers);
         Log.d("TAG", "getPercentageOfCorrectAnswers: " + allAnswers);
-        return (float) correctAnswers/allAnswers;
+        return (float) correctAnswers / allAnswers;
     }
 
-    public ArrayList<Object> getAnswers(){
+    public ArrayList<Object> getAnswers() {
         ArrayList<Object> answers = new ArrayList<>();
         Log.d("answers", "list size: " + linearLayout.getChildCount());
         for (int i = 0; i < linearLayout.getChildCount(); i++) {
@@ -200,7 +200,7 @@ public class QuestionList {
         return answers;
     }
 
-    public boolean areAllQuestionsAnswered(){
+    public boolean areAllQuestionsAnswered() {
         Log.d("answers", "list size: " + linearLayout.getChildCount());
         for (int i = 0; i < linearLayout.getChildCount(); i++) {
             YesOrNoQuestion yesOrNoQuestion;
@@ -209,7 +209,7 @@ public class QuestionList {
 
             try {
                 yesOrNoQuestion = (YesOrNoQuestion) getQuestion(i);
-                if (yesOrNoQuestion.getAnswer() == 0){
+                if (yesOrNoQuestion.getAnswer() == 0) {
                     return false;
                 }
             } catch (ClassCastException ignored) {
@@ -217,7 +217,7 @@ public class QuestionList {
             }
             try {
                 multipleChoiceQuestion = (MultipleChoiceQuestion) getQuestion(i);
-                if (multipleChoiceQuestion.getAnswer() == 0){
+                if (multipleChoiceQuestion.getAnswer() == 0) {
                     return false;
                 }
             } catch (Exception ignored) {
@@ -226,7 +226,7 @@ public class QuestionList {
 
             try {
                 multipleAnswerQuestion = (MultipleAnswerQuestion) getQuestion(i);
-                if (multipleAnswerQuestion.getAnswer().size() == 0){
+                if (multipleAnswerQuestion.getAnswer().size() == 0) {
                     return false;
                 }
             } catch (Exception ignored) {
@@ -236,7 +236,7 @@ public class QuestionList {
         return true;
     }
 
-    public View getQuestion(int index){
+    public View getQuestion(int index) {
         YesOrNoQuestion yesOrNoQuestion = null;
         MultipleChoiceQuestion multipleChoiceQuestion = null;
         MultipleAnswerQuestion multipleAnswerQuestion = null;
@@ -259,27 +259,38 @@ public class QuestionList {
 
         }
 
-        if (yesOrNoQuestion != null){
+        if (yesOrNoQuestion != null) {
             return yesOrNoQuestion;
-        }else if (multipleChoiceQuestion != null){
+        } else if (multipleChoiceQuestion != null) {
             return multipleChoiceQuestion;
-        } else if(multipleAnswerQuestion != null){
+        } else if (multipleAnswerQuestion != null) {
             return multipleAnswerQuestion;
-        }else {
+        } else {
             return null;
         }
     }
 
-    public void addOnValueChangedRunnable(int index, Runnable r){
+    public void addOnAnswerChangedListener(int index, OnAnswerChangedListener r) {
         try {
-            ((MultipleChoiceQuestion) getQuestion(index)).doOnValueChanged(r);
-        } catch (Exception e) {
-            YesOrNoQuestion yesOrNoQuestion = (YesOrNoQuestion) getQuestion(index);
-            //Todo: add do on value changed
+            ((MultipleChoiceQuestion) getQuestion(index)).addOnAnswerChangedListener(r);
+        } catch (Exception ignored) {
+
+        }
+
+        try {
+            ((MultipleAnswerQuestion) getQuestion(index)).addOnAnswerChangedListener(r);
+        } catch (Exception ignored) {
+
+        }
+
+        try {
+            ((YesOrNoQuestion) getQuestion(index)).addOnAnswerChangedListener(r);
+        } catch (Exception ignored) {
+
         }
     }
 
-    public LinearLayout getQuestionViews(){
+    public LinearLayout getQuestionViews() {
         return linearLayout;
     }
 }
