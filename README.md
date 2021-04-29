@@ -28,6 +28,7 @@ CheckboxQuestions is a library that provides with different forms of asking ques
     <li><a href="#MultipleChoiceQuestions">MultipleChoiceQuestions</a></li>
     <li><a href="#MultipleAnswerQuestions">MultipleAnswerQuestions</a></li>
     <li><a href="#Questions">Questions</a></li>
+    <li><a href="#OnAnswerChangedListener">OnAnswerChangedListener</a></li>
 </ul>
 
 # Images
@@ -46,7 +47,7 @@ https://user-images.githubusercontent.com/68039511/115741726-d87b6080-a344-11eb-
 
 # Implementation
 
-### The latest stable release is `v1.3.5`
+### The latest stable release is `v1.3.6`
 
 [![](https://jitpack.io/v/Cyber-cp/CheckboxQuestions.svg)](https://jitpack.io/#Cyber-cp/CheckboxQuestions)
 
@@ -469,3 +470,24 @@ Question q = new Question("What is the slope intercept equation of a line?", new
 In this example, the second arg is an Integer ArrayList of the correct answers. Everything else stays the same.
 
 If there is no answer, the second arg can be set to Question.NO_ANSWER (or 0), or null.
+
+# OnAnswerChangedListener
+A listener that allows you to detect when the answer for a question is changed. It may look like this:
+```java
+multipleChoiceQuestion.addOnAnswerChangedListener(new OnAnswerChangedListener() {
+            @Override
+            public void onAnswerChanged(int i) {
+                if (i == correctAnswer){
+                    Toast.makeText(MainActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "Wrong!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onAnswerChanged(ArrayList<Integer> arrayList) {
+
+            }
+        });
+```
+It may say `int i` and `ArrayList<Integer> arraylist`, or `int answer` and `ArrayList<Integer> answer`. The `ArrayList answer` is used for a MultipleAnswerQuestion, as the index for all the selected answers are added into the ArrayList (the index starts at 1, NOT 0). The `int answer` is used for YesOrNoQuestions and MultipleChoiceQuestions, the int is set to the index of the selected answer (the index starts at 1, NOT 0).
