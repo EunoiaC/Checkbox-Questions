@@ -477,11 +477,7 @@ A listener that allows you to detect when the answer for a question is changed. 
 multipleChoiceQuestion.addOnAnswerChangedListener(new OnAnswerChangedListener() {
             @Override
             public void onAnswerChanged(int i) {
-                if (i == correctAnswer){
-                    Toast.makeText(MainActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(MainActivity.this, "Wrong!", Toast.LENGTH_SHORT).show();
-                }
+                
             }
 
             @Override
