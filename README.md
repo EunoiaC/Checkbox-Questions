@@ -463,6 +463,8 @@ Another way to create a Question is:
 Question q = new Question("What is the slope intercept equation of a line?", "y = mx + b", Question.MULTIPLE_CHOICE_QUESTION, "x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y");
 ```
 
+The second arg here is a string version of the correct answer.
+
 The final way is:
 ```java
 Question q = new Question("What is the slope intercept equation of a line?", new ArrayList<Integer>(Arrays.asList(1, 2, 3)), Question.MULTIPLE_ANSWER_QUESTION, "x = yb + m", "y = mx + b", "m = yx + b", "b = mx + y");
