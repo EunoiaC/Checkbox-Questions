@@ -479,14 +479,14 @@ A listener that allows you to detect when the answer for a question is changed. 
 ```java
 multipleChoiceQuestion.addOnAnswerChangedListener(new OnAnswerChangedListener() {
             @Override
-            public void onAnswerChanged(int i) {
+            public void onAnswerChanged(int selectedAnswerIndex, String selectedAnswerText) {
                 
             }
 
             @Override
-            public void onAnswerChanged(ArrayList<Integer> arrayList) {
+            public void onAnswerChanged(ArrayList<Integer> listOfSelectedAnswerIndexes) {
 
             }
         });
 ```
-It may say `int i` and `ArrayList<Integer> arraylist`, or `int answer` and `ArrayList<Integer> answer`. The `ArrayList answer` is used for a MultipleAnswerQuestion, as the index for all the selected answers are added into the ArrayList (the index starts at 1, NOT 0). The `int answer` is used for YesOrNoQuestions and MultipleChoiceQuestions, the int is set to the index of the selected answer (the index starts at 1, NOT 0).
+DISCLAIMER: The names of the variables may not be correct when you implement this listener into your app. All indexes used in this interface start at 1.
