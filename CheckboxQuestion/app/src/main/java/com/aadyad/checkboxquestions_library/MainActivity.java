@@ -110,9 +110,8 @@ public class MainActivity extends AppCompatActivity {
 
                         questionList.addOnAnswerChangedListener(0, new OnAnswerChangedListener() {
                             @Override
-                            public void onAnswerChanged(int answer) {
-                                Toast.makeText(MainActivity.this, "Answer: " + answer, Toast.LENGTH_SHORT).show();
-
+                            public void onAnswerChanged(int answer, String answerText) {
+                                Toast.makeText(MainActivity.this, "Answer: " + answer + answerText, Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
@@ -123,8 +122,8 @@ public class MainActivity extends AppCompatActivity {
 
                         questionList.addOnAnswerChangedListener(21, new OnAnswerChangedListener() {
                             @Override
-                            public void onAnswerChanged(int answer) {
-                                Toast.makeText(MainActivity.this, "Answer: " + answer, Toast.LENGTH_SHORT).show();
+                            public void onAnswerChanged(int answer, String answerText) {
+                                Toast.makeText(MainActivity.this, "Answer: " + answer + answerText, Toast.LENGTH_SHORT).show();
 
                             }
 
@@ -136,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
 
                         questionList.addOnAnswerChangedListener(20, new OnAnswerChangedListener() {
                             @Override
-                            public void onAnswerChanged(int answer) {
+                            public void onAnswerChanged(int answer, String answerText) {
 
                             }
 

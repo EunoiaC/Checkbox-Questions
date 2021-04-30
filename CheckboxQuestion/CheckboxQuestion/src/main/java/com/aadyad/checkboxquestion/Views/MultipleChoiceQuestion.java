@@ -168,7 +168,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
                                 }
                                 buttonClicked = finalI + 1;
                                 if (onAnswerChangedListener != null) {
-                                    onAnswerChangedListener.onAnswerChanged(buttonClicked);
+                                    onAnswerChangedListener.onAnswerChanged(buttonClicked, checkBox.getText().toString());
                                 }
                             }
                         });
@@ -206,7 +206,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
                                 }
                                 buttonClicked = finalI + 1;
                                 if (onAnswerChangedListener != null) {
-                                    onAnswerChangedListener.onAnswerChanged(buttonClicked);
+                                    onAnswerChangedListener.onAnswerChanged(buttonClicked, checkBox.getText().toString());
                                 }
                             }
                         });
@@ -238,7 +238,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
                                 }
                                 buttonClicked = finalI + 1;
                                 if (onAnswerChangedListener != null) {
-                                    onAnswerChangedListener.onAnswerChanged(buttonClicked);
+                                    onAnswerChangedListener.onAnswerChanged(buttonClicked, checkBox.getText().toString());
                                 }
                             }
                         });
@@ -324,7 +324,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
                 }
                 buttonClicked = 1;
                 if (onAnswerChangedListener != null) {
-                    onAnswerChangedListener.onAnswerChanged(buttonClicked);
+                    onAnswerChangedListener.onAnswerChanged(buttonClicked, option1.getText().toString());
                 }
             }
         });
@@ -343,7 +343,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
                 }
                 buttonClicked = 2;
                 if (onAnswerChangedListener != null) {
-                    onAnswerChangedListener.onAnswerChanged(buttonClicked);
+                    onAnswerChangedListener.onAnswerChanged(buttonClicked, option2.getText().toString());
                 }
             }
         });
@@ -363,7 +363,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
                 buttonClicked = 3;
 
                 if (onAnswerChangedListener != null) {
-                    onAnswerChangedListener.onAnswerChanged(buttonClicked);
+                    onAnswerChangedListener.onAnswerChanged(buttonClicked, option3.getText().toString());
                 }
             }
         });
@@ -382,7 +382,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
                 }
                 buttonClicked = 4;
                 if (onAnswerChangedListener != null) {
-                    onAnswerChangedListener.onAnswerChanged(buttonClicked);
+                    onAnswerChangedListener.onAnswerChanged(buttonClicked, option4.getText().toString());
                 }
             }
         });
