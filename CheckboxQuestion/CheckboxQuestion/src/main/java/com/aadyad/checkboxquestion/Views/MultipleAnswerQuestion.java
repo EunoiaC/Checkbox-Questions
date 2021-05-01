@@ -30,6 +30,8 @@ public class MultipleAnswerQuestion extends LinearLayout {
     public static final int RIGHT = 2;
     Context context;
 
+    String[] allOptions;
+
     private OnAnswerChangedListener onAnswerChangedListener;
 
     ArrayList<CheckBox> checkBoxes = new ArrayList<>();
@@ -102,6 +104,7 @@ public class MultipleAnswerQuestion extends LinearLayout {
         mainLayout = findViewById(R.id.mainLayout);
 
         this.spacing = spacing;
+        this.allOptions = options;
 
         checkBoxes.add(option1);
         checkBoxes.add(option2);
@@ -507,5 +510,9 @@ public class MultipleAnswerQuestion extends LinearLayout {
                 checkBox.setChecked(false);
             }
         }
+    }
+
+    public String[] getOptions(){
+        return allOptions;
     }
 }

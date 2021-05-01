@@ -12,7 +12,9 @@ import com.aadyad.checkboxquestion.OnAnswerChangedListener;
 import com.aadyad.checkboxquestion.Question;
 import com.aadyad.checkboxquestion.QuestionList;
 import com.aadyad.checkboxquestion.QuestionListSettings;
+import com.aadyad.checkboxquestion.Views.MultipleAnswerQuestion;
 import com.aadyad.checkboxquestion.Views.MultipleChoiceQuestion;
+import com.aadyad.checkboxquestion.Views.YesOrNoQuestion;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -108,42 +110,19 @@ public class MainActivity extends AppCompatActivity {
                         questionList = new QuestionList(list, questionListSettings, getApplicationContext());
                         questionList.createQuestionViews();
 
-                        questionList.addOnAnswerChangedListener(0, new OnAnswerChangedListener() {
-                            @Override
-                            public void onAnswerChanged(int answer, String answerText) {
-                                Toast.makeText(MainActivity.this, "Answer: " + answer + answerText, Toast.LENGTH_SHORT).show();
-                            }
+                        for (int i = 0; i < questionList.getQuestionViews().getChildCount(); i++){
+                            questionList.addOnAnswerChangedListener(i, new OnAnswerChangedListener() {
+                                @Override
+                                public void onAnswerChanged(int selectedAnswerIndex, String selectedAnswerText) {
+                                    Toast.makeText(MainActivity.this, "Selected: " + selectedAnswerText, Toast.LENGTH_SHORT).show();
+                                }
 
-                            @Override
-                            public void onAnswerChanged(ArrayList<Integer> answer) {
-
-                            }
-                        });
-
-                        questionList.addOnAnswerChangedListener(21, new OnAnswerChangedListener() {
-                            @Override
-                            public void onAnswerChanged(int answer, String answerText) {
-                                Toast.makeText(MainActivity.this, "Answer: " + answer + answerText, Toast.LENGTH_SHORT).show();
-
-                            }
-
-                            @Override
-                            public void onAnswerChanged(ArrayList<Integer> answer) {
-
-                            }
-                        });
-
-                        questionList.addOnAnswerChangedListener(20, new OnAnswerChangedListener() {
-                            @Override
-                            public void onAnswerChanged(int answer, String answerText) {
-
-                            }
-
-                            @Override
-                            public void onAnswerChanged(ArrayList<Integer> answer) {
-                                Toast.makeText(MainActivity.this, "Answer: " + answer, Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                                @Override
+                                public void onAnswerChanged(ArrayList<Integer> listOfSelectedAnswerIndexes) {
+                                    Toast.makeText(MainActivity.this, "Selected: " + listOfSelectedAnswerIndexes, Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
 
                         linearLayout.addView(questionList.getQuestionViews());
                     }

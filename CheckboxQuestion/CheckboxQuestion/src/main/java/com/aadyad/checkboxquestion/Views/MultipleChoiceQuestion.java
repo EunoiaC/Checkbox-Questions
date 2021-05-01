@@ -27,6 +27,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
     public static final int LEFT = 0;
     public static final int CENTER = 1;
     public static final int RIGHT = 2;
+    String[] allOptions;
     Context context;
 
     private OnAnswerChangedListener onAnswerChangedListener;
@@ -98,6 +99,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
         mainLayout = findViewById(R.id.mainLayout);
 
         this.spacing = spacing;
+        this.allOptions = options;
 
         checkBoxes.add(option1);
         checkBoxes.add(option2);
@@ -510,5 +512,9 @@ public class MultipleChoiceQuestion extends LinearLayout {
                 checkBox.setChecked(false);
             }
         }
+    }
+
+    public String[] getOptions(){
+        return allOptions;
     }
 }
