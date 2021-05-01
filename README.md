@@ -369,6 +369,9 @@ Returns an int of the selected answer.
 ### `setQuestion(String question)`
 Sets the question text.
 
+### `getOptions()`
+Returns a String array with all the options the question provides.
+
 # MultipleAnswerQuestions
 ```xml
 <com.aadyad.checkboxquestion.Views.MultipleAnswerQuestion
@@ -442,6 +445,10 @@ Returns an Integer ArrayList of the selected answer.
 
 ### `setQuestion(String question)`
 Sets the question text.
+
+
+### `getOptions()`
+Returns a String array with all the options the question provides.
 
 # Questions
 Questions are an object that allow you to make a QuestionList full of Multiple Choice Questions.
