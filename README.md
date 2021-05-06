@@ -50,7 +50,7 @@ https://user-images.githubusercontent.com/68039511/115741726-d87b6080-a344-11eb-
 
 # Implementation
 
-### The latest stable release is `v1.3.8`
+### The latest stable release is `v1.3.9`
 
 ## For Gradle
 In your project level build.gradle first add JitPack:
@@ -212,7 +212,7 @@ Returns a boolean that is true if all the questions are answered, and false if n
 ### `getPercentageOfCorrectAnswers()`
 Returns a decimal value of how many answers are correct.
 
-### `getAnswers()`
+### `getSelectedAnswers()`
 Returns an Object ArrayList filled with the selected answers. You can loop through the arraylist using `for(Object answer : answers)` and you can try to cast each answer to a specific object, like `(int) answer`.
 
 ### `getQuestion(int index)`
@@ -236,6 +236,7 @@ YesOrNoQuestions are a simple form of question which show a question with a numb
         app:checkbox_orientation="horizontal"
         app:question_number="1"
         app:question_title="Do you have a cold?"
+	app:correct_answer="0"
         app:question_text_size="20"
         app:option_text_size="18" />
 ```
@@ -255,9 +256,11 @@ The `checkbox_orientation` attribute allows you to choose whether the checkboxes
 ## Question Number
 The `question_number` attribute allows you to set the number of the question.
 
-
 ## Question Title
 The `question_title` attribute allows you to set the question text.
+
+## Correct Answer
+The `correct_answer` attribute allows you to set the correct answer. Put 0 for no answer.
 
 ## Question Text Size
 The `question_text_size` attribute allows you to set the question text size.
@@ -285,7 +288,7 @@ Sets the textsize of the question.
 ### `setOptionTextSize(float optionTextSize)`
 Sets the textsize for the options.
 
-### `getAnswer()`
+### `getSelectedAnswer()`
 Returns an int of the selected answer.
 
 ### `setQuestion(String question)`
@@ -294,12 +297,25 @@ Sets the question text.
 ### `setQuestionNumber(String number)`
 Sets the question number.
 
+### `getQuestionTitleTextView()`
+Returns the TextView which holds the question text.
+
+### `getQuestionNumberTextView()`
+Returns the TextView which holds the question number text.
+
+### `getCorrectAnswer()`
+Returns an int which is the index of the correct answer (the index starts at 1, NOT 0). If it returns 1 that means the first checkbox is the correct answer
+
+### `isAnswerCorrect()`
+Returns a boolean that is true if the selected answer matches the correct answer, and false if it doesn't.
+
 # MultipleChoiceQuestions
 ```xml
 <com.aadyad.checkboxquestion.Views.MultipleChoiceQuestion
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:question_title="What is the slope-intercept equation of a line?"
+	app:correct_answer="0"
         app:question_number="10"
         app:number_enabled="true"
         app:option_text_size="20"
@@ -330,6 +346,9 @@ The `question_number` attribute allows you to set the number of the question.
 
 ## Question Title
 The `question_title` attribute allows you to set the question text.
+
+## Correct Answer
+The `correct_answer` attribute allows you to set the correct answer. Put 0 for no answer.
 
 ## Question Text Size
 The `question_text_size` attribute allows you to set the question text size.
@@ -363,7 +382,7 @@ Sets the textsize of the question.
 ### `setOptionTextSize(float optionTextSize)`
 Sets the textsize for the options.
 
-### `getAnswer()`
+### `getSelectedAnswer()`
 Returns an int of the selected answer.
 
 ### `setQuestion(String question)`
@@ -371,6 +390,21 @@ Sets the question text.
 
 ### `getOptions()`
 Returns a String array with all the options the question provides.
+
+### `getCheckbox(int index)`
+Returns a Checkbox object at a certain index (the index starts at 0).
+
+### `getQuestionTitleTextView()`
+Returns the TextView which holds the question text.
+
+### `getQuestionNumberTextView()`
+Returns the TextView which holds the question number text.
+
+### `getCorrectAnswer()`
+Returns an int which is the index of the correct answer (the index starts at 1, NOT 0). If it returns 1 that means the first checkbox is the correct answer
+
+### `isAnswerCorrect()`
+Returns a boolean that is true if the selected answer matches the correct answer, and false if it doesn't.
 
 # MultipleAnswerQuestions
 ```xml
@@ -440,15 +474,23 @@ Sets the textsize of the question.
 ### `setOptionTextSize(float optionTextSize)`
 Sets the textsize for the options.
 
-### `getAnswer()`
+### `getSelectedAnswers()`
 Returns an Integer ArrayList of the selected answer.
 
 ### `setQuestion(String question)`
 Sets the question text.
 
-
 ### `getOptions()`
 Returns a String array with all the options the question provides.
+
+### `getCheckbox(int index)`
+Returns a Checkbox object at a certain index (the index starts at 0).
+
+### `getQuestionTitleTextView()`
+Returns the TextView which holds the question text.
+
+### `getQuestionNumberTextView()`
+Returns the TextView which holds the question number text.
 
 # Questions
 Questions are an object that allow you to make a QuestionList full of Multiple Choice Questions.
