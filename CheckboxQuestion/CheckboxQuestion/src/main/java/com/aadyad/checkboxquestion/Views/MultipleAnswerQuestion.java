@@ -35,8 +35,8 @@ public class MultipleAnswerQuestion extends LinearLayout {
     private OnAnswerChangedListener onAnswerChangedListener;
 
     ArrayList<CheckBox> checkBoxes = new ArrayList<>();
-
     ArrayList<Integer> selectedAnswers;
+
     LinearLayout layout;
     LinearLayout mainLayout;
     private int spacing;
@@ -390,7 +390,7 @@ public class MultipleAnswerQuestion extends LinearLayout {
         });
     }
 
-    public ArrayList<Integer> getAnswer() {
+    public ArrayList<Integer> getSelectedAnswers() {
         return selectedAnswers;
     }
 
@@ -510,6 +510,18 @@ public class MultipleAnswerQuestion extends LinearLayout {
                 checkBox.setChecked(false);
             }
         }
+    }
+
+    public CheckBox getCheckbox(int index){
+        return checkBoxes.get(index);
+    }
+
+    public TextView getQuestionTitleTextView(){
+        return findViewById(R.id.question_title);
+    }
+
+    public TextView getQuestionNumberTextView(){
+        return findViewById(R.id.question_number);
     }
 
     public String[] getOptions(){

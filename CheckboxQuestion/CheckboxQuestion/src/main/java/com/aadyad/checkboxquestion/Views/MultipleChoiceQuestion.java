@@ -38,6 +38,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
     LinearLayout layout;
     LinearLayout mainLayout;
     private int spacing;
+    private int correctAnswer;
 
     public MultipleChoiceQuestion(Context context) {
         this(context, null);
@@ -59,6 +60,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
         String a3;
         String a4;
         int spacing;
+        int tempCorrectAnswer;
         float questionTextSize, optionTextSize;
         int boxLocation;
         int orientation;
@@ -74,6 +76,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
             a2 = a.getString(R.styleable.MultipleChoiceQuestion_option_2);
             a3 = a.getString(R.styleable.MultipleChoiceQuestion_option_3);
             a4 = a.getString(R.styleable.MultipleChoiceQuestion_option_4);
+            tempCorrectAnswer = a.getInt(R.styleable.MultipleChoiceQuestion_correct_answer, 0);
             title = a.getString(R.styleable.MultipleChoiceQuestion_question_title);
             boxLocation = a.getInt(R.styleable.MultipleChoiceQuestion_checkbox_location, 0);
             orientation = a.getInt(R.styleable.MultipleChoiceQuestion_checkbox_orientation, 0);
@@ -84,11 +87,11 @@ public class MultipleChoiceQuestion extends LinearLayout {
             a.recycle();
         }
 
-        init(title, number, numberEnabled, spacing, orientation, boxLocation, questionTextSize, optionTextSize, a1, a2, a3, a4);
+        init(title, number, numberEnabled, spacing, orientation, boxLocation, questionTextSize, optionTextSize, tempCorrectAnswer, a1, a2, a3, a4);
     }
 
     // Setup views
-    public void init(String title, String number, boolean numEnabled, int spacing, int orientation, int boxLocation, float questionTextSize, float optionTextSize, String... options) {
+    public void init(String title, String number, boolean numEnabled, int spacing, int orientation, int boxLocation, float questionTextSize, float optionTextSize, int correctAnswer, String... options) {
         TextView questionTitle = (TextView) findViewById(R.id.question_title);
         TextView questionNumber = (TextView) findViewById(R.id.question_number);
         final CheckBox option1 = (CheckBox) findViewById(R.id.answer1);
@@ -100,6 +103,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
 
         this.spacing = spacing;
         this.allOptions = options;
+        this.correctAnswer = correctAnswer;
 
         checkBoxes.add(option1);
         checkBoxes.add(option2);
@@ -390,7 +394,7 @@ public class MultipleChoiceQuestion extends LinearLayout {
         });
     }
 
-    public int getAnswer() {
+    public int getSelectedAnswer() {
         return buttonClicked;
     }
 
@@ -512,6 +516,29 @@ public class MultipleChoiceQuestion extends LinearLayout {
                 checkBox.setChecked(false);
             }
         }
+    }
+
+    public CheckBox getCheckbox(int index){
+        return checkBoxes.get(index);
+    }
+
+    public TextView getQuestionTitleTextView(){
+        return findViewById(R.id.question_title);
+    }
+
+    public TextView getQuestionNumberTextView(){
+        return findViewById(R.id.question_number);
+    }
+
+    public int getCorrectAnswer(){
+        return correctAnswer;
+    }
+
+    public boolean isAnswerCorrect() throws Exception{
+        if (getCorrectAnswer() == Question.NO_ANSWER){
+            throw new Exception("There is no correct answer for this question.");
+        }
+        return getCorrectAnswer() == getSelectedAnswer();
     }
 
     public String[] getOptions(){

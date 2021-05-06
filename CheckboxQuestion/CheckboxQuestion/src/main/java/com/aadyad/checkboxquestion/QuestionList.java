@@ -48,12 +48,12 @@ public class QuestionList {
                     case Question.MULTIPLE_CHOICE_QUESTION:
                         Log.d("TAG", "createQuestionViews: " + Arrays.toString(q.options));
                         MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(context);
-                        multipleChoiceQuestion.init(q.question, String.valueOf(i), settings.isNumEnabled(), settings.getSpacing(), this.orientation, settings.getCheckBoxLocation(), settings.getQuestionTextSize(), settings.getCheckBoxTextSize(), q.options);
+                        multipleChoiceQuestion.init(q.question, String.valueOf(i), settings.isNumEnabled(), settings.getSpacing(), this.orientation, settings.getCheckBoxLocation(), settings.getQuestionTextSize(), settings.getCheckBoxTextSize(), q.correctAnswer, q.options);
                         linearLayout.addView(multipleChoiceQuestion);
                         break;
                     case Question.YES_OR_NO_QUESTION:
                         YesOrNoQuestion yesOrNoQuestion = new YesOrNoQuestion(context);
-                        yesOrNoQuestion.init(q.question, String.valueOf(i), settings.isNumEnabled(), settings.getSpacing(), this.orientation, settings.getCheckBoxLocation(), settings.getQuestionTextSize(), settings.getCheckBoxTextSize());
+                        yesOrNoQuestion.init(q.question, String.valueOf(i), settings.isNumEnabled(), settings.getSpacing(), this.orientation, settings.getCheckBoxLocation(), settings.getQuestionTextSize(), settings.getCheckBoxTextSize(), q.correctAnswer);
                         linearLayout.addView(yesOrNoQuestion);
                         break;
                     case Question.MULTIPLE_ANSWER_QUESTION:
@@ -70,7 +70,7 @@ public class QuestionList {
             for (String q : questions) {
                 i++;
                 YesOrNoQuestion yesOrNoQuestion = new YesOrNoQuestion(context);
-                yesOrNoQuestion.init(q, String.valueOf(i), settings.isNumEnabled(), settings.getSpacing(), this.orientation, settings.getCheckBoxLocation(), settings.getQuestionTextSize(), settings.getCheckBoxTextSize());
+                yesOrNoQuestion.init(q, String.valueOf(i), settings.isNumEnabled(), settings.getSpacing(), this.orientation, settings.getCheckBoxLocation(), settings.getQuestionTextSize(), settings.getCheckBoxTextSize(), Question.NO_ANSWER);
                 linearLayout.addView(yesOrNoQuestion);
             }
         }
@@ -118,11 +118,11 @@ public class QuestionList {
 
             try {
                 yesOrNoQuestion = (YesOrNoQuestion) getQuestion(i);
-                int answer = yesOrNoQuestion.getAnswer();
+                int answer = yesOrNoQuestion.getSelectedAnswer();
                 Log.d("TAG", "answer: " + answer);
                 int correctAnswer = choiceQuestions.get(i).correctAnswer;
                 Log.d("TAG", "correct answer: " + correctAnswer);
-                if (correctAnswer == 0) {
+                if (correctAnswer == Question.NO_ANSWER) {
                     allAnswers--;
                 } else if (answer == correctAnswer) {
                     correctAnswers++;
@@ -133,11 +133,11 @@ public class QuestionList {
 
             try {
                 multipleChoiceQuestion = (MultipleChoiceQuestion) getQuestion(i);
-                int answer = multipleChoiceQuestion.getAnswer();
+                int answer = multipleChoiceQuestion.getSelectedAnswer();
                 Log.d("TAG", "answer: " + answer);
                 int correctAnswer = choiceQuestions.get(i).correctAnswer;
                 Log.d("TAG", "correct answer: " + correctAnswer);
-                if (correctAnswer == 0) {
+                if (correctAnswer == Question.NO_ANSWER) {
                     allAnswers--;
                 } else if (answer == correctAnswer) {
                     correctAnswers++;
@@ -148,13 +148,13 @@ public class QuestionList {
 
             try {
                 multipleAnswerQuestion = (MultipleAnswerQuestion) getQuestion(i);
-                ArrayList<Integer> answer = multipleAnswerQuestion.getAnswer();
+                ArrayList<Integer> answer = multipleAnswerQuestion.getSelectedAnswers();
                 Collections.sort(answer);
                 Log.d("TAG", "answer: " + answer);
                 ArrayList<Integer> correctAnswer = choiceQuestions.get(i).multipleCorrectAnswer;
                 Collections.sort(correctAnswer);
                 Log.d("TAG", "correct answer: " + correctAnswer);
-                if (correctAnswer.size() == 0 || correctAnswer == null) {
+                if (correctAnswer.size() == Question.NO_ANSWER || correctAnswer == null) {
                     allAnswers--;
                 } else if (answer.equals(correctAnswer)) {
                     correctAnswers++;
@@ -168,7 +168,7 @@ public class QuestionList {
         return (float) correctAnswers / allAnswers;
     }
 
-    public ArrayList<Object> getAnswers() {
+    public ArrayList<Object> getSelectedAnswers() {
         ArrayList<Object> answers = new ArrayList<>();
         Log.d("answers", "list size: " + linearLayout.getChildCount());
         for (int i = 0; i < linearLayout.getChildCount(); i++) {
@@ -178,21 +178,21 @@ public class QuestionList {
 
             try {
                 yesOrNoQuestion = (YesOrNoQuestion) getQuestion(i);
-                answers.add(yesOrNoQuestion.getAnswer());
+                answers.add(yesOrNoQuestion.getSelectedAnswer());
             } catch (ClassCastException ignored) {
 
             }
 
             try {
                 multipleChoiceQuestion = (MultipleChoiceQuestion) getQuestion(i);
-                answers.add(multipleChoiceQuestion.getAnswer());
+                answers.add(multipleChoiceQuestion.getSelectedAnswer());
             } catch (Exception ignored) {
 
             }
 
             try {
                 multipleAnswerQuestion = (MultipleAnswerQuestion) getQuestion(i);
-                answers.add(multipleAnswerQuestion.getAnswer());
+                answers.add(multipleAnswerQuestion.getSelectedAnswers());
             } catch (Exception ignored) {
 
             }
@@ -209,7 +209,7 @@ public class QuestionList {
 
             try {
                 yesOrNoQuestion = (YesOrNoQuestion) getQuestion(i);
-                if (yesOrNoQuestion.getAnswer() == 0) {
+                if (yesOrNoQuestion.getSelectedAnswer() == 0) {
                     return false;
                 }
             } catch (ClassCastException ignored) {
@@ -217,7 +217,7 @@ public class QuestionList {
             }
             try {
                 multipleChoiceQuestion = (MultipleChoiceQuestion) getQuestion(i);
-                if (multipleChoiceQuestion.getAnswer() == 0) {
+                if (multipleChoiceQuestion.getSelectedAnswer() == 0) {
                     return false;
                 }
             } catch (Exception ignored) {
@@ -226,7 +226,7 @@ public class QuestionList {
 
             try {
                 multipleAnswerQuestion = (MultipleAnswerQuestion) getQuestion(i);
-                if (multipleAnswerQuestion.getAnswer().size() == 0) {
+                if (multipleAnswerQuestion.getSelectedAnswers().size() == 0) {
                     return false;
                 }
             } catch (Exception ignored) {

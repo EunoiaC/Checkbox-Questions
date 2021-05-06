@@ -12,9 +12,7 @@ import com.aadyad.checkboxquestion.OnAnswerChangedListener;
 import com.aadyad.checkboxquestion.Question;
 import com.aadyad.checkboxquestion.QuestionList;
 import com.aadyad.checkboxquestion.QuestionListSettings;
-import com.aadyad.checkboxquestion.Views.MultipleAnswerQuestion;
 import com.aadyad.checkboxquestion.Views.MultipleChoiceQuestion;
-import com.aadyad.checkboxquestion.Views.YesOrNoQuestion;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -111,10 +109,16 @@ public class MainActivity extends AppCompatActivity {
                         questionList.createQuestionViews();
 
                         for (int i = 0; i < questionList.getQuestionViews().getChildCount(); i++){
+                            final int finalI = i;
+                            final int finalI1 = i;
                             questionList.addOnAnswerChangedListener(i, new OnAnswerChangedListener() {
                                 @Override
                                 public void onAnswerChanged(int selectedAnswerIndex, String selectedAnswerText) {
-                                    Toast.makeText(MainActivity.this, "Selected: " + selectedAnswerText, Toast.LENGTH_SHORT).show();
+                                    try {
+                                        Toast.makeText(MainActivity.this, "" + ((MultipleChoiceQuestion) questionList.getQuestion(finalI1)).isAnswerCorrect(), Toast.LENGTH_SHORT).show();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
 
                                 @Override
@@ -139,9 +143,13 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Questions answered", "logAnswers: " + questionList.areAllQuestionsAnswered());
         Log.d("Questions answered", "percentage: " + questionList.getPercentageOfCorrectAnswers());
         String s = "";
-        for (Object i : questionList.getAnswers()) {
+        for (Object i : questionList.getSelectedAnswers()) {
             try {
                 s += (int) i;
+            } catch (Exception ignored) {
+            }
+            try {
+                s += (ArrayList<Integer>) i;
             } catch (Exception ignored) {
             }
         }

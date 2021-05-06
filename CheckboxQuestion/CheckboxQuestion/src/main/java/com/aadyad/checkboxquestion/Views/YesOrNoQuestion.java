@@ -29,6 +29,7 @@ public class YesOrNoQuestion extends LinearLayout {
 
     private LinearLayout layout;
     private int spacing;
+    private int correctAnswer;
 
     private int buttonClicked = 0; //0 is not clicked, 1 is no, 2 is yes
 
@@ -47,6 +48,7 @@ public class YesOrNoQuestion extends LinearLayout {
         String number;
         int spacing;
         int boxLocation;
+        int tempCorrectAnswer;
         int orientation;
         float questionTextSize;
         float checkBoxTextSize;
@@ -59,6 +61,7 @@ public class YesOrNoQuestion extends LinearLayout {
             checkBoxTextSize = a.getFloat(R.styleable.YesOrNoQuestion_option_text_size, QuestionListSettings.TEXT_SIZE_DEFAULT);
             //questionLayoutHeight = a.getFloat(R.styleable.YesOrNoQuestion_question_layout_height, QuestionListSettings.TEXT_SIZE_DEFAULT);
             title = a.getString(R.styleable.YesOrNoQuestion_question_title);
+            tempCorrectAnswer = a.getInt(R.styleable.YesOrNoQuestion_correct_answer, 0);
             boxLocation = a.getInt(R.styleable.YesOrNoQuestion_checkbox_location, 0);
             orientation = a.getInt(R.styleable.YesOrNoQuestion_checkbox_orientation, 0);
             spacing = a.getInt(R.styleable.YesOrNoQuestion_spacing_between_boxes, 17);
@@ -68,15 +71,16 @@ public class YesOrNoQuestion extends LinearLayout {
             a.recycle();
         }
 
-        init(title, number, numberEnabled, spacing, orientation, boxLocation, questionTextSize, checkBoxTextSize);
+        init(title, number, numberEnabled, spacing, orientation, boxLocation, questionTextSize, checkBoxTextSize, correctAnswer);
     }
 
     // Setup views
-    public void init(String title, String number, boolean numEnabled, int spacing, int orientation, int boxLocation, float questionSize, float checkBoxSize) {
+    public void init(String title, String number, boolean numEnabled, int spacing, int orientation, int boxLocation, float questionSize, float checkBoxSize, int correctAnswer) {
         TextView questionNumber = (TextView) findViewById(R.id.question_number);
         layout = findViewById(R.id.checkBoxHolder);
 
         this.spacing = spacing;
+        this.correctAnswer = correctAnswer;
 
         //Todo: Set height if size == auto.
         //Todo: Also use height
@@ -132,7 +136,7 @@ public class YesOrNoQuestion extends LinearLayout {
         });
     }
 
-    public int getAnswer(){
+    public int getSelectedAnswer(){
         return buttonClicked;
     }
 
@@ -215,5 +219,24 @@ public class YesOrNoQuestion extends LinearLayout {
             yes.setChecked(false);
             no.setChecked(true);
         }
+    }
+
+    public TextView getQuestionTitleTextView(){
+        return findViewById(R.id.question_title);
+    }
+
+    public TextView getQuestionNumberTextView(){
+        return findViewById(R.id.question_number);
+    }
+
+    public int getCorrectAnswer(){
+        return correctAnswer;
+    }
+
+    public boolean isAnswerCorrect() throws Exception{
+        if (getCorrectAnswer() == Question.NO_ANSWER){
+            throw new Exception("There is no correct answer for this question.");
+        }
+        return getCorrectAnswer() == getSelectedAnswer();
     }
 }

@@ -3,6 +3,7 @@
     <declare-styleable name="YesOrNoQuestion">
         <attr name="option_text_size" format="float"/>
         <attr name="question_text_size" format="float"/>
+        <attr name="correct_answer" format="integer"/>
         <attr name="checkbox_orientation" format="integer">
             <enum name="horizontal" value="0"/>
             <enum name="split_vertical" value="1"/>
@@ -22,6 +23,7 @@
     </declare-styleable>
 
     <declare-styleable name="MultipleChoiceQuestion">
+        <attr name="correct_answer"/>
         <attr name="option_text_size"/>
         <attr name="question_text_size"/>
         <attr name="checkbox_orientation"/>
