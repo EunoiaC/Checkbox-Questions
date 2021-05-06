@@ -309,6 +309,9 @@ Returns an int which is the index of the correct answer (the index starts at 1, 
 ### `isAnswerCorrect()`
 Returns a boolean that is true if the selected answer matches the correct answer, and false if it doesn't.
 
+### `setCorrectAnswer(int correctAnswer)`
+Sets the correct answer of the question.
+
 # MultipleChoiceQuestions
 ```xml
 <com.aadyad.checkboxquestion.Views.MultipleChoiceQuestion
@@ -406,6 +409,9 @@ Returns an int which is the index of the correct answer (the index starts at 1, 
 ### `isAnswerCorrect()`
 Returns a boolean that is true if the selected answer matches the correct answer, and false if it doesn't.
 
+### `setCorrectAnswer(int correctAnswer)`
+Sets the correct answer of the question.
+
 # MultipleAnswerQuestions
 ```xml
 <com.aadyad.checkboxquestion.Views.MultipleAnswerQuestion
@@ -491,6 +497,15 @@ Returns the TextView which holds the question text.
 
 ### `getQuestionNumberTextView()`
 Returns the TextView which holds the question number text.
+
+### `getCorrectAnswer()`
+Returns an Integer ArrayList which contains the indexes of the correct answers (the index starts at 1, NOT 0).
+
+### `isAnswerCorrect()`
+Returns a boolean that is true if the selected answers matches the correct answer, and false if it doesn't.
+
+### `setCorrectAnswer(ArrayList<Integer> correctAnswer)`
+Sets the correct answer of the question.
 
 # Questions
 Questions are an object that allow you to make a QuestionList full of Multiple Choice Questions.
