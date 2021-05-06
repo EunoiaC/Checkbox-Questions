@@ -239,4 +239,8 @@ public class YesOrNoQuestion extends LinearLayout {
         }
         return getCorrectAnswer() == getSelectedAnswer();
     }
+
+    public void setCorrectAnswer(int correctAnswer){
+        this.correctAnswer = correctAnswer;
+    }
 }

@@ -59,6 +59,7 @@ public class QuestionList {
                     case Question.MULTIPLE_ANSWER_QUESTION:
                         MultipleAnswerQuestion multipleAnswerQuestion = new MultipleAnswerQuestion(context);
                         multipleAnswerQuestion.init(q.question, String.valueOf(i), settings.isNumEnabled(), settings.getSpacing(), this.orientation, settings.getCheckBoxLocation(), settings.getQuestionTextSize(), settings.getCheckBoxTextSize(), q.options);
+                        multipleAnswerQuestion.setCorrectAnswer(q.multipleCorrectAnswer);
                         linearLayout.addView(multipleAnswerQuestion);
                         break;
                     default:

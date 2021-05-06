@@ -22,6 +22,7 @@ import com.aadyad.checkboxquestion.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class MultipleAnswerQuestion extends LinearLayout {
 
@@ -40,6 +41,7 @@ public class MultipleAnswerQuestion extends LinearLayout {
     LinearLayout layout;
     LinearLayout mainLayout;
     private int spacing;
+    private ArrayList<Integer> correctAnswer;
 
     public MultipleAnswerQuestion(Context context) {
         this(context, null);
@@ -526,5 +528,22 @@ public class MultipleAnswerQuestion extends LinearLayout {
 
     public String[] getOptions(){
         return allOptions;
+    }
+
+    public void setCorrectAnswer(ArrayList<Integer> correctAnswer){
+        Collections.sort(correctAnswer);
+        this.correctAnswer = correctAnswer;
+    }
+
+    public ArrayList<Integer> getCorrectAnswer(){
+        return correctAnswer;
+    }
+
+    public boolean isAnswerCorrect() throws Exception{
+        if (getCorrectAnswer() == null){
+            throw new Exception("There is no correct answer for this question.");
+        }
+        Collections.sort(selectedAnswers);
+        return getCorrectAnswer().equals(selectedAnswers);
     }
 }

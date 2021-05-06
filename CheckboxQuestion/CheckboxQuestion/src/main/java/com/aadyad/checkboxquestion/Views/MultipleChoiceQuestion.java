@@ -544,4 +544,8 @@ public class MultipleChoiceQuestion extends LinearLayout {
     public String[] getOptions(){
         return allOptions;
     }
+
+    public void setCorrectAnswer(int correctAnswer){
+        this.correctAnswer = correctAnswer;
+    }
 }

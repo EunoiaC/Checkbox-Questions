@@ -12,6 +12,7 @@ import com.aadyad.checkboxquestion.OnAnswerChangedListener;
 import com.aadyad.checkboxquestion.Question;
 import com.aadyad.checkboxquestion.QuestionList;
 import com.aadyad.checkboxquestion.QuestionListSettings;
+import com.aadyad.checkboxquestion.Views.MultipleAnswerQuestion;
 import com.aadyad.checkboxquestion.Views.MultipleChoiceQuestion;
 
 import org.json.JSONArray;
@@ -123,7 +124,11 @@ public class MainActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onAnswerChanged(ArrayList<Integer> listOfSelectedAnswerIndexes) {
-                                    Toast.makeText(MainActivity.this, "Selected: " + listOfSelectedAnswerIndexes, Toast.LENGTH_SHORT).show();
+                                    try {
+                                        Toast.makeText(MainActivity.this, "" + ((MultipleAnswerQuestion) questionList.getQuestion(finalI1)).isAnswerCorrect(), Toast.LENGTH_SHORT).show();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
                         }
