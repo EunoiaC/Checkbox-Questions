@@ -553,4 +553,4 @@ multipleChoiceQuestion.addOnAnswerChangedListener(new OnAnswerChangedListener() 
             }
         });
 ```
-DISCLAIMER: The names of the variables may not be correct when you implement this listener into your app. All indexes used in this interface start at 1.
+DISCLAIMER: The names of the variables may not be correct when you implement this listener into your app. All indexes used in this interface start at 1. The onAnswerChanged without an ArrayList is used for YesOrNoQuestions and MultipleChoiceQuestions, while the method with an ArrayList is for MultipleAnswerQuestions.
