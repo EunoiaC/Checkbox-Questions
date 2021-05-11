@@ -121,7 +121,9 @@ public class YesOrNoQuestion extends LinearLayout {
                 no.setChecked(false);
                 yes.setChecked(true);
                 buttonClicked = 1;
-                onAnswerChangedListener.onAnswerChanged(buttonClicked, yes.getText().toString());
+                if (onAnswerChangedListener != null) {
+                    onAnswerChangedListener.onAnswerChanged(buttonClicked, yes.getText().toString());
+                }
             }
         });
 
@@ -131,7 +133,9 @@ public class YesOrNoQuestion extends LinearLayout {
                 no.setChecked(true);
                 yes.setChecked(false);
                 buttonClicked = 2;
-                onAnswerChangedListener.onAnswerChanged(buttonClicked, no.getText().toString());
+                if (onAnswerChangedListener != null) {
+                    onAnswerChangedListener.onAnswerChanged(buttonClicked, no.getText().toString());
+                }
             }
         });
     }
