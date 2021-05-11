@@ -168,7 +168,7 @@ Now we want to create our list of questions. There are 2 ways to do this. If you
 String[] string = new String[]{"Is 9+2 = 11?", "Are you happy?", "Did you eat breakfast?"};
 ```
 
-If you want to make questions with a correct answer, create an ArrayList of [Questions](#question).
+If you want to make questions with a correct answer, create an ArrayList of [Questions](#Questions).
 
 ```java
 ArrayList<Question> list = new ArrayList<>();
