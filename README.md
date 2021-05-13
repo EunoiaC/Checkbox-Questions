@@ -50,7 +50,7 @@ https://user-images.githubusercontent.com/68039511/115741726-d87b6080-a344-11eb-
 
 # Implementation
 
-### The latest stable release is `v1.3.10`
+### The latest stable release is `v1.4.0`
 
 ## For Gradle
 In your project level build.gradle first add JitPack:
@@ -412,6 +412,10 @@ Returns a boolean that is true if the selected answer matches the correct answer
 ### `setCorrectAnswer(int correctAnswer)`
 Sets the correct answer of the question.
 
+
+### `setOptionText(int index, String text)`
+Sets the text of an option retrieved by an index. The option is retrieved by the index in the order they can be seen in.
+
 # MultipleAnswerQuestions
 ```xml
 <com.aadyad.checkboxquestion.Views.MultipleAnswerQuestion
@@ -506,6 +510,9 @@ Returns a boolean that is true if the selected answers matches the correct answe
 
 ### `setCorrectAnswer(ArrayList<Integer> correctAnswer)`
 Sets the correct answer of the question.
+
+### `setOptionText(int index, String text)`
+Sets the text of an option retrieved by an index. The option is retrieved by the index in the order they can be seen in.
 
 # Questions
 Questions are an object that allow you to make a QuestionList full of Multiple Choice Questions.
