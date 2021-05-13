@@ -514,7 +514,7 @@ public class MultipleAnswerQuestion extends LinearLayout {
         }
     }
 
-    public void setCheckboxText(int index, String text){
+    public void setOptionText(int index, String text){
         checkBoxes.get(index).setText(text);
     }
 
