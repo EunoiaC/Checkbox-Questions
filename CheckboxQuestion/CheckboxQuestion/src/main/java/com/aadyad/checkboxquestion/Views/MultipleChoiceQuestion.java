@@ -518,6 +518,10 @@ public class MultipleChoiceQuestion extends LinearLayout {
         }
     }
 
+    public void setCheckboxText(int index, String text){
+        checkBoxes.get(index).setText(text);
+    }
+
     public CheckBox getCheckbox(int index){
         return checkBoxes.get(index);
     }
