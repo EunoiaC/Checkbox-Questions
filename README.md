@@ -173,7 +173,8 @@ If you want to make questions with a correct answer, create an ArrayList of [Que
 ```java
 ArrayList<Question> list = new ArrayList<>();
 
-list.add(new Question("How are you?", 0, Question.MULTIPLE_CHOICE_QUESTION, "Good", "Bad"));
+list.add(new Question("How are you?", Question.NO_ANSWER, Question.MULTIPLE_CHOICE_QUESTION, "Good", "Bad"));
+list.add(new Question("What is 17 * 5", 3, Question.MULTIPLE_CHOICE_QUESTION, "12", "22", "85", "105", "117"));
 ```
 (You can add as many questions as you like)
 
